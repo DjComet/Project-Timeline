@@ -1,0 +1,164 @@
+fileFormatVersion: 2
+guid: 484af831a79f7814eaa54a244ad3cbca
+timeCreated: 1524004823
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: DoorRD
+    100002: DoorRD1
+    100004: DoorRD6
+    100006: DoorRD7
+    100008: FrameR
+    100010: FrameR1
+    100012: //RootNode
+    100014: back
+    100016: DoorLD
+    100018: DoorLU
+    100020: DoorPosts
+    100022: DoorRU
+    100024: FrameL
+    100026: DoorFrames
+    400000: DoorRD
+    400002: DoorRD1
+    400004: DoorRD6
+    400006: DoorRD7
+    400008: FrameR
+    400010: FrameR1
+    400012: //RootNode
+    400014: back
+    400016: DoorLD
+    400018: DoorLU
+    400020: DoorPosts
+    400022: DoorRU
+    400024: FrameL
+    400026: DoorFrames
+    2000000: back
+    2100000: DarkerYellow
+    2100002: Posts
+    2100004: Yellow
+    2300000: DoorRD
+    2300002: DoorRD1
+    2300004: DoorRD6
+    2300006: DoorRD7
+    2300008: FrameR
+    2300010: FrameR1
+    2300012: DoorLD
+    2300014: DoorLU
+    2300016: DoorRU
+    2300018: FrameL
+    3300000: DoorRD
+    3300002: DoorRD1
+    3300004: DoorRD6
+    3300006: DoorRD7
+    3300008: FrameR
+    3300010: FrameR1
+    3300012: DoorLD
+    3300014: DoorLU
+    3300016: DoorRU
+    3300018: FrameL
+    4300000: DoorRD
+    4300002: FrameR
+    4300004: DoorRD1
+    4300006: DoorRD6
+    4300008: DoorRD7
+    4300010: FrameR1
+    4300012: DoorRU
+    4300014: DoorLD
+    4300016: DoorLU
+    4300018: FrameL
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DarkerYellow
+    second: {fileID: 2100000, guid: 79d32234e3ef9dc47851a8c782909d30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Posts
+    second: {fileID: 2100000, guid: 28ea280073802854fa983b300c257b55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 009e9a94319a3c34da11b1a590f7691a, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 16.7
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

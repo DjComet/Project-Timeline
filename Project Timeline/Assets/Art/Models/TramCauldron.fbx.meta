@@ -1,0 +1,943 @@
+fileFormatVersion: 2
+guid: 6a97b2f64da8322479f5b21d64bb57bd
+timeCreated: 1513240065
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BenchesL
+    100002: BenchesR
+    100004: BielaDoble
+    100006: BielaDoble 1
+    100008: Bisagras
+    100010: BisagrasTrapdoor
+    100012: Bogie
+    100014: BogieFrame
+    100016: Brake
+    100018: Brake 1
+    100020: Caldero
+    100022: Ceiling
+    100024: Clock
+    100026: Clock 1
+    100028: DecorationFront
+    100030: DecorationRear
+    100032: FirePit
+    100034: Front
+    100036: Gauge1
+    100038: Gauge1 1
+    100040: Gauge2
+    100042: Gauge2 1
+    100044: Gauge3
+    100046: Gauge3 1
+    100048: Ground
+    100050: Handlebar
+    100052: Handlebar 1
+    100054: InteriorL
+    100056: InteriorL 1
+    100058: InteriorR
+    100060: InteriorR 1
+    100062: Light1
+    100064: Light2
+    100066: Light3
+    100068: Manifold
+    100070: Manifold 1
+    100072: Parrilla1
+    100074: Parrilla2
+    100076: pCube81
+    100078: pCube82
+    100080: PistonL
+    100082: PistonR
+    100084: polySurface1
+    100086: polySurface10
+    100088: polySurface10 1
+    100090: polySurface11
+    100092: polySurface11 1
+    100094: polySurface12
+    100096: polySurface12 1
+    100098: polySurface13
+    100100: polySurface13 1
+    100102: polySurface14
+    100104: polySurface14 1
+    100106: polySurface4
+    100108: polySurface6
+    100110: polySurface7
+    100112: polySurface7 1
+    100114: polySurface8
+    100116: polySurface8 1
+    100118: polySurface9
+    100120: polySurface9 1
+    100122: Rear
+    100124: SideUnderBars
+    100126: SpeedHandlebar
+    100128: SpeedHandlebar 1
+    100130: Stairs
+    100132: Stairs1
+    100134: Stairs2
+    100136: Stairs3
+    100138: Stairs4
+    100140: Tabla
+    100142: Tabla1
+    100144: Tabla10
+    100146: Tabla11
+    100148: Tabla12
+    100150: Tabla13
+    100152: Tabla14
+    100154: Tabla15
+    100156: Tabla16
+    100158: Tabla17
+    100160: Tabla18
+    100162: Tabla2
+    100164: Tabla3
+    100166: Tabla4
+    100168: Tabla5
+    100170: Tabla6
+    100172: Tabla7
+    100174: Tabla8
+    100176: Tabla9
+    100178: Tablas
+    100180: Tapa_Del_Caldero
+    100182: //RootNode
+    100184: TramControlsFront
+    100186: TramControlsRear
+    100188: transform10
+    100190: transform11
+    100192: transform12
+    100194: transform13
+    100196: TrapDoor
+    100198: Tuberia_L
+    100200: Tuberia_R
+    100202: Vastago
+    100204: Vastago 1
+    100206: Viga1
+    100208: Viga2
+    100210: Viga3
+    100212: Viga4
+    100214: Vigas
+    100216: WallL
+    100218: WallR
+    100220: WheelsFront
+    100222: WheelsRear
+    100224: Gauge
+    100226: Gauge 1
+    100228: Glass
+    100230: Glass 1
+    100232: Glass 2
+    100234: Glass 3
+    100236: Glass 4
+    100238: Glass 5
+    100240: Glass 6
+    100242: Glass 7
+    100244: Handlebar1
+    100246: InteriorL1
+    100248: InteriorR1
+    100250: Ladder
+    100252: Ladder1
+    100254: Ladder2
+    100256: Light4
+    100258: Light5
+    100260: Light6
+    100262: Manifold1
+    100264: Switch
+    100266: Switch1
+    100268: Biela_
+    100270: Biela_ 1
+    100272: PistonL1
+    100274: back
+    100276: left
+    100278: Biela_1
+    100280: Clock1
+    100282: Gauge4
+    100284: Gauge5
+    100286: Glass1
+    100288: Glass2
+    100290: Glass3
+    100292: Glass4
+    100294: Glass5
+    100296: Glass6
+    100298: Glass7
+    100300: SpeedHandlebar1
+    100302: Tram
+    100304: Vastago1
+    100306: BielaL
+    100308: BielaR
+    100310: VastagoL
+    100312: VastagoR
+    400000: BenchesL
+    400002: BenchesR
+    400004: BielaDoble
+    400006: BielaDoble 1
+    400008: Bisagras
+    400010: BisagrasTrapdoor
+    400012: Bogie
+    400014: BogieFrame
+    400016: Brake
+    400018: Brake 1
+    400020: Caldero
+    400022: Ceiling
+    400024: Clock
+    400026: Clock 1
+    400028: DecorationFront
+    400030: DecorationRear
+    400032: FirePit
+    400034: Front
+    400036: Gauge1
+    400038: Gauge1 1
+    400040: Gauge2
+    400042: Gauge2 1
+    400044: Gauge3
+    400046: Gauge3 1
+    400048: Ground
+    400050: Handlebar
+    400052: Handlebar 1
+    400054: InteriorL
+    400056: InteriorL 1
+    400058: InteriorR
+    400060: InteriorR 1
+    400062: Light1
+    400064: Light2
+    400066: Light3
+    400068: Manifold
+    400070: Manifold 1
+    400072: Parrilla1
+    400074: Parrilla2
+    400076: pCube81
+    400078: pCube82
+    400080: PistonL
+    400082: PistonR
+    400084: polySurface1
+    400086: polySurface10
+    400088: polySurface10 1
+    400090: polySurface11
+    400092: polySurface11 1
+    400094: polySurface12
+    400096: polySurface12 1
+    400098: polySurface13
+    400100: polySurface13 1
+    400102: polySurface14
+    400104: polySurface14 1
+    400106: polySurface4
+    400108: polySurface6
+    400110: polySurface7
+    400112: polySurface7 1
+    400114: polySurface8
+    400116: polySurface8 1
+    400118: polySurface9
+    400120: polySurface9 1
+    400122: Rear
+    400124: SideUnderBars
+    400126: SpeedHandlebar
+    400128: SpeedHandlebar 1
+    400130: Stairs
+    400132: Stairs1
+    400134: Stairs2
+    400136: Stairs3
+    400138: Stairs4
+    400140: Tabla
+    400142: Tabla1
+    400144: Tabla10
+    400146: Tabla11
+    400148: Tabla12
+    400150: Tabla13
+    400152: Tabla14
+    400154: Tabla15
+    400156: Tabla16
+    400158: Tabla17
+    400160: Tabla18
+    400162: Tabla2
+    400164: Tabla3
+    400166: Tabla4
+    400168: Tabla5
+    400170: Tabla6
+    400172: Tabla7
+    400174: Tabla8
+    400176: Tabla9
+    400178: Tablas
+    400180: Tapa_Del_Caldero
+    400182: //RootNode
+    400184: TramControlsFront
+    400186: TramControlsRear
+    400188: transform10
+    400190: transform11
+    400192: transform12
+    400194: transform13
+    400196: TrapDoor
+    400198: Tuberia_L
+    400200: Tuberia_R
+    400202: Vastago
+    400204: Vastago 1
+    400206: Viga1
+    400208: Viga2
+    400210: Viga3
+    400212: Viga4
+    400214: Vigas
+    400216: WallL
+    400218: WallR
+    400220: WheelsFront
+    400222: WheelsRear
+    400224: Gauge
+    400226: Gauge 1
+    400228: Glass
+    400230: Glass 1
+    400232: Glass 2
+    400234: Glass 3
+    400236: Glass 4
+    400238: Glass 5
+    400240: Glass 6
+    400242: Glass 7
+    400244: Handlebar1
+    400246: InteriorL1
+    400248: InteriorR1
+    400250: Ladder
+    400252: Ladder1
+    400254: Ladder2
+    400256: Light4
+    400258: Light5
+    400260: Light6
+    400262: Manifold1
+    400264: Switch
+    400266: Switch1
+    400268: Biela_
+    400270: Biela_ 1
+    400272: PistonL1
+    400274: back
+    400276: left
+    400278: Biela_1
+    400280: Clock1
+    400282: Gauge4
+    400284: Gauge5
+    400286: Glass1
+    400288: Glass2
+    400290: Glass3
+    400292: Glass4
+    400294: Glass5
+    400296: Glass6
+    400298: Glass7
+    400300: SpeedHandlebar1
+    400302: Tram
+    400304: Vastago1
+    400306: BielaL
+    400308: BielaR
+    400310: VastagoL
+    400312: VastagoR
+    2300000: BenchesL
+    2300002: BenchesR
+    2300004: BielaDoble
+    2300006: BielaDoble 1
+    2300008: Bisagras
+    2300010: BisagrasTrapdoor
+    2300012: Bogie
+    2300014: BogieFrame
+    2300016: Brake
+    2300018: Brake 1
+    2300020: Caldero
+    2300022: Ceiling
+    2300024: DecorationFront
+    2300026: DecorationRear
+    2300028: FirePit
+    2300030: Front
+    2300032: Ground
+    2300034: Handlebar
+    2300036: Handlebar 1
+    2300038: InteriorL
+    2300040: InteriorL 1
+    2300042: InteriorR
+    2300044: InteriorR 1
+    2300046: Light1
+    2300048: Light2
+    2300050: Light3
+    2300052: Manifold
+    2300054: Manifold 1
+    2300056: Parrilla1
+    2300058: Parrilla2
+    2300060: pCube81
+    2300062: pCube82
+    2300064: PistonL
+    2300066: PistonR
+    2300068: polySurface1
+    2300070: polySurface10
+    2300072: polySurface10 1
+    2300074: polySurface11
+    2300076: polySurface11 1
+    2300078: polySurface12
+    2300080: polySurface12 1
+    2300082: polySurface13
+    2300084: polySurface13 1
+    2300086: polySurface14
+    2300088: polySurface14 1
+    2300090: polySurface4
+    2300092: polySurface6
+    2300094: polySurface7
+    2300096: polySurface7 1
+    2300098: polySurface8
+    2300100: polySurface8 1
+    2300102: polySurface9
+    2300104: polySurface9 1
+    2300106: Rear
+    2300108: SideUnderBars
+    2300110: SpeedHandlebar
+    2300112: SpeedHandlebar 1
+    2300114: Stairs
+    2300116: Stairs1
+    2300118: Stairs2
+    2300120: Stairs3
+    2300122: Stairs4
+    2300124: Tabla
+    2300126: Tabla1
+    2300128: Tabla10
+    2300130: Tabla11
+    2300132: Tabla12
+    2300134: Tabla13
+    2300136: Tabla14
+    2300138: Tabla15
+    2300140: Tabla16
+    2300142: Tabla17
+    2300144: Tabla18
+    2300146: Tabla2
+    2300148: Tabla3
+    2300150: Tabla4
+    2300152: Tabla5
+    2300154: Tabla6
+    2300156: Tabla7
+    2300158: Tabla8
+    2300160: Tabla9
+    2300162: Tapa_Del_Caldero
+    2300164: TramControlsFront
+    2300166: TramControlsRear
+    2300168: TrapDoor
+    2300170: Tuberia_L
+    2300172: Tuberia_R
+    2300174: Vastago
+    2300176: Vastago 1
+    2300178: Viga1
+    2300180: Viga2
+    2300182: Viga3
+    2300184: Viga4
+    2300186: WallL
+    2300188: WallR
+    2300190: WheelsFront
+    2300192: WheelsRear
+    2300194: Clock
+    2300196: Clock 1
+    2300198: Gauge
+    2300200: Gauge 1
+    2300202: Gauge1
+    2300204: Gauge1 1
+    2300206: Gauge2
+    2300208: Gauge2 1
+    2300210: Glass
+    2300212: Glass 1
+    2300214: Glass 2
+    2300216: Glass 3
+    2300218: Glass 4
+    2300220: Glass 5
+    2300222: Glass 6
+    2300224: Glass 7
+    2300226: Handlebar1
+    2300228: InteriorL1
+    2300230: InteriorR1
+    2300232: Ladder
+    2300234: Ladder1
+    2300236: Ladder2
+    2300238: Light4
+    2300240: Light5
+    2300242: Light6
+    2300244: Manifold1
+    2300246: Switch
+    2300248: Switch1
+    2300250: Biela_
+    2300252: Biela_ 1
+    2300254: PistonL1
+    2300256: Biela_1
+    2300258: Clock1
+    2300260: Gauge3
+    2300262: Gauge4
+    2300264: Gauge5
+    2300266: Glass1
+    2300268: Glass2
+    2300270: Glass3
+    2300272: Glass4
+    2300274: Glass5
+    2300276: Glass6
+    2300278: Glass7
+    2300280: SpeedHandlebar1
+    2300282: Vastago1
+    2300284: BielaL
+    2300286: BielaR
+    2300288: VastagoL
+    2300290: VastagoR
+    3300000: BenchesL
+    3300002: BenchesR
+    3300004: BielaDoble
+    3300006: BielaDoble 1
+    3300008: Bisagras
+    3300010: BisagrasTrapdoor
+    3300012: Bogie
+    3300014: BogieFrame
+    3300016: Brake
+    3300018: Brake 1
+    3300020: Caldero
+    3300022: Ceiling
+    3300024: DecorationFront
+    3300026: DecorationRear
+    3300028: FirePit
+    3300030: Front
+    3300032: Ground
+    3300034: Handlebar
+    3300036: Handlebar 1
+    3300038: InteriorL
+    3300040: InteriorL 1
+    3300042: InteriorR
+    3300044: InteriorR 1
+    3300046: Light1
+    3300048: Light2
+    3300050: Light3
+    3300052: Manifold
+    3300054: Manifold 1
+    3300056: Parrilla1
+    3300058: Parrilla2
+    3300060: pCube81
+    3300062: pCube82
+    3300064: PistonL
+    3300066: PistonR
+    3300068: polySurface1
+    3300070: polySurface10
+    3300072: polySurface10 1
+    3300074: polySurface11
+    3300076: polySurface11 1
+    3300078: polySurface12
+    3300080: polySurface12 1
+    3300082: polySurface13
+    3300084: polySurface13 1
+    3300086: polySurface14
+    3300088: polySurface14 1
+    3300090: polySurface4
+    3300092: polySurface6
+    3300094: polySurface7
+    3300096: polySurface7 1
+    3300098: polySurface8
+    3300100: polySurface8 1
+    3300102: polySurface9
+    3300104: polySurface9 1
+    3300106: Rear
+    3300108: SideUnderBars
+    3300110: SpeedHandlebar
+    3300112: SpeedHandlebar 1
+    3300114: Stairs
+    3300116: Stairs1
+    3300118: Stairs2
+    3300120: Stairs3
+    3300122: Stairs4
+    3300124: Tabla
+    3300126: Tabla1
+    3300128: Tabla10
+    3300130: Tabla11
+    3300132: Tabla12
+    3300134: Tabla13
+    3300136: Tabla14
+    3300138: Tabla15
+    3300140: Tabla16
+    3300142: Tabla17
+    3300144: Tabla18
+    3300146: Tabla2
+    3300148: Tabla3
+    3300150: Tabla4
+    3300152: Tabla5
+    3300154: Tabla6
+    3300156: Tabla7
+    3300158: Tabla8
+    3300160: Tabla9
+    3300162: Tapa_Del_Caldero
+    3300164: TramControlsFront
+    3300166: TramControlsRear
+    3300168: TrapDoor
+    3300170: Tuberia_L
+    3300172: Tuberia_R
+    3300174: Vastago
+    3300176: Vastago 1
+    3300178: Viga1
+    3300180: Viga2
+    3300182: Viga3
+    3300184: Viga4
+    3300186: WallL
+    3300188: WallR
+    3300190: WheelsFront
+    3300192: WheelsRear
+    3300194: Clock
+    3300196: Clock 1
+    3300198: Gauge
+    3300200: Gauge 1
+    3300202: Gauge1
+    3300204: Gauge1 1
+    3300206: Gauge2
+    3300208: Gauge2 1
+    3300210: Glass
+    3300212: Glass 1
+    3300214: Glass 2
+    3300216: Glass 3
+    3300218: Glass 4
+    3300220: Glass 5
+    3300222: Glass 6
+    3300224: Glass 7
+    3300226: Handlebar1
+    3300228: InteriorL1
+    3300230: InteriorR1
+    3300232: Ladder
+    3300234: Ladder1
+    3300236: Ladder2
+    3300238: Light4
+    3300240: Light5
+    3300242: Light6
+    3300244: Manifold1
+    3300246: Switch
+    3300248: Switch1
+    3300250: Biela_
+    3300252: Biela_ 1
+    3300254: PistonL1
+    3300256: Biela_1
+    3300258: Clock1
+    3300260: Gauge3
+    3300262: Gauge4
+    3300264: Gauge5
+    3300266: Glass1
+    3300268: Glass2
+    3300270: Glass3
+    3300272: Glass4
+    3300274: Glass5
+    3300276: Glass6
+    3300278: Glass7
+    3300280: SpeedHandlebar1
+    3300282: Vastago1
+    3300284: BielaL
+    3300286: BielaR
+    3300288: VastagoL
+    3300290: VastagoR
+    4300000: Front
+    4300002: DecorationFront
+    4300004: Light1
+    4300006: Light2
+    4300008: Light3
+    4300010: Parrilla2
+    4300012: Rear
+    4300014: DecorationRear
+    4300016: Parrilla1
+    4300018: TramControlsRear
+    4300020: polySurface9
+    4300022: polySurface10
+    4300024: polySurface11
+    4300026: polySurface12
+    4300028: polySurface13
+    4300030: polySurface14
+    4300032: polySurface7
+    4300034: polySurface8
+    4300036: Brake
+    4300038: Handlebar
+    4300040: Manifold
+    4300042: InteriorR
+    4300044: InteriorL
+    4300046: SpeedHandlebar
+    4300048: BenchesR
+    4300050: WallR
+    4300052: BenchesL
+    4300054: WallL
+    4300056: Ceiling
+    4300058: Bisagras
+    4300060: BisagrasTrapdoor
+    4300062: TrapDoor
+    4300064: Stairs
+    4300066: pCube81
+    4300068: pCube82
+    4300070: Ground
+    4300072: Stairs1
+    4300074: Stairs2
+    4300076: Stairs3
+    4300078: Stairs4
+    4300080: SideUnderBars
+    4300082: BogieFrame
+    4300084: WheelsFront
+    4300086: WheelsRear
+    4300088: Bogie
+    4300090: polySurface1
+    4300092: polySurface4
+    4300094: polySurface6
+    4300096: TramControlsFront
+    4300098: polySurface9
+    4300100: polySurface10
+    4300102: polySurface11
+    4300104: polySurface12
+    4300106: polySurface13
+    4300108: polySurface14
+    4300110: polySurface7
+    4300112: polySurface8
+    4300114: Brake
+    4300116: Handlebar
+    4300118: Manifold
+    4300120: InteriorR
+    4300122: InteriorL
+    4300124: SpeedHandlebar
+    4300126: PistonL
+    4300128: Vastago
+    4300130: BielaDoble
+    4300132: PistonR
+    4300134: Vastago
+    4300136: BielaDoble
+    4300138: FirePit
+    4300140: Caldero
+    4300142: Tapa_Del_Caldero
+    4300144: Tuberia_L
+    4300146: Tuberia_R
+    4300148: Tabla
+    4300150: Tabla1
+    4300152: Tabla2
+    4300154: Tabla3
+    4300156: Tabla4
+    4300158: Tabla5
+    4300160: Tabla6
+    4300162: Tabla7
+    4300164: Tabla8
+    4300166: Tabla9
+    4300168: Tabla10
+    4300170: Tabla11
+    4300172: Tabla12
+    4300174: Tabla13
+    4300176: Tabla14
+    4300178: Tabla15
+    4300180: Tabla16
+    4300182: Tabla17
+    4300184: Tabla18
+    4300186: Viga1
+    4300188: Viga2
+    4300190: Viga3
+    4300192: Viga4
+    4300194: Gauge2
+    4300196: Glass
+    4300198: Gauge1
+    4300200: Glass
+    4300202: Gauge
+    4300204: Glass
+    4300206: Clock
+    4300208: Glass
+    4300210: Switch1
+    4300212: InteriorL1
+    4300214: InteriorR1
+    4300216: Handlebar1
+    4300218: Manifold1
+    4300220: Light4
+    4300222: Light6
+    4300224: Light5
+    4300226: Switch
+    4300228: Gauge
+    4300230: Glass
+    4300232: Gauge1
+    4300234: Glass
+    4300236: Gauge2
+    4300238: Glass
+    4300240: Clock
+    4300242: Glass
+    4300244: Ladder
+    4300246: Ladder1
+    4300248: Ladder2
+    4300250: Biela_
+    4300252: PistonL1
+    4300254: Biela_
+    4300256: Glass1
+    4300258: Glass2
+    4300260: Glass3
+    4300262: Glass4
+    4300264: Gauge3
+    4300266: Gauge4
+    4300268: Glass5
+    4300270: Gauge5
+    4300272: Glass6
+    4300274: Clock1
+    4300276: Glass7
+    4300278: Vastago1
+    4300280: SpeedHandlebar1
+    4300282: Biela_1
+    4300284: VastagoR
+    4300286: BielaR
+    4300288: VastagoL
+    4300290: BielaL
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BenchMetal
+    second: {fileID: 2100000, guid: de13d0f136e11594d95e30d339162141, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Benches
+    second: {fileID: 2100000, guid: cf548693c9f7c854cac0112b41aa0289, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Biela
+    second: {fileID: 2100000, guid: 859e1b562d90ae54b94e6c0d9be97040, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bogie1
+    second: {fileID: 2100000, guid: b9ca443601c5655409f1ced8974256ad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brass
+    second: {fileID: 2100000, guid: ad52a0caeba742e43a9dfa5977f4d322, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cauldron
+    second: {fileID: 2100000, guid: faffb99f9a8dce84f9eb3575ecb3a1d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Default_Material
+    second: {fileID: 2100000, guid: 5a7cc3130f230794097a52eecf9e9947, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Faros
+    second: {fileID: 2100000, guid: 8d53af1466d658545a8c8d2b32d36feb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: 93f0c0cda21f91e4c825c2cc52a85621, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Golden
+    second: {fileID: 2100000, guid: 59ad6ab2ff7bc1449966aef61107191c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Green
+    second: {fileID: 2100000, guid: bb2445203491c3a42a38f0b9c9f2dec0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: 6507a6ac359febd4eb275edc2b6daf78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Manometros
+    second: {fileID: 2100000, guid: 59b27cd510f43604c886b11fa667c244, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red
+    second: {fileID: 2100000, guid: a36bfab7e25f3664286fe34ebb2bdfe6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White
+    second: {fileID: 2100000, guid: 18f572189e2793044b2ddc78d6bb1c93, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wooden_Interior
+    second: {fileID: 2100000, guid: 5773b1dd6d80e914f97b5a8a5129d404, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 009e9a94319a3c34da11b1a590f7691a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: darkWood_Interior
+    second: {fileID: 2100000, guid: c2a53e7039c7d794f87b277e6152a442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: 705364d7b20e00b4b9230fc78a55920a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lessdarkWood_Interior
+    second: {fileID: 2100000, guid: 49f962fe5c4dbe9428f27f87a26781fc, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 45
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 13a1d8a337b13924f9960d713d90e0d3,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

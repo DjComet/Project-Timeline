@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - MovingPlatform
+  - Ladder
+  - CanGoThroughPortals
+  - PlayerCanvas
+  - TimeManager
+  - PortalA
+  - PortalB
+  - OriginalRoom
+  - CopyRoom
+  - OriginalRoomChange
+  - CopyRoomChange
+  - CanCreatePortal
+  - PortalPref
+  - RayInteract
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - Time
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
