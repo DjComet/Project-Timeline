@@ -23,7 +23,11 @@ public class MainPlayerController : MonoBehaviour {
     private IsolationBomb isolationBomb;
     private PortalCreator portalCreator;
     private TimeSphere timeSphere;
-    
+
+    //To control inputs to work correct the lerp of interface
+    private InterfaceChangeWeapon interfaceChangeWeapon;
+
+
     public int weaponSelector = 0;
 
 
@@ -41,13 +45,20 @@ public class MainPlayerController : MonoBehaviour {
         portalCreator = gameObject.GetComponent<PortalCreator>();
         timeSphere = gameObject.GetComponent<TimeSphere>();
 
+        interfaceChangeWeapon = GameObject.FindGameObjectWithTag("PlayerCanvas").GetComponent<InterfaceChangeWeapon>();
+
     }
 	
 	// Update is called once per frame
 	void Update () {
 
         ChangeState();
-        ChangeWeapon();
+
+        if(interfaceChangeWeapon.transitionFinish)//Is necesary finish the lerp before change to other weapon
+        { 
+            ChangeWeapon();
+        }
+        
         
 	}
 

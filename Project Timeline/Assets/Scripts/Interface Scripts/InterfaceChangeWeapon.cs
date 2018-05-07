@@ -14,13 +14,22 @@ public class InterfaceChangeWeapon : MonoBehaviour
     public float counter;    
     public int weaponActive;
     public int weaponSelected;
-    private bool transitionFinish;
+    public bool transitionFinish;
     private float t;
+    //private float tColor;
+    //private bool transitionColorFinish;
+    //public Transform[] transfoms;
+
+
+    private Color imageBeforeColor;
+    private Color imageNextColor;
+
 
 
     //public Transform startPositionLerp;
     //public Transform endPositionLerp;
-    float starTime;
+
+    float distance;
     float distanceToDestination;
 
 
@@ -57,11 +66,13 @@ public class InterfaceChangeWeapon : MonoBehaviour
             }
 
         }
+
+        distance = Vector3.Distance(weaponPanelOptions[0].transform.position, weaponPanelOptions[1].transform.position);
         counter = 0;
         weaponActive = 0;
-        SelectorPos = weaponPanelOptions[weaponActive].transform.position;
+        weaponSelector.transform.position = weaponPanelOptions[weaponActive].transform.position;
         transitionFinish = true;     
-        starTime = Time.time;   
+           
 
     }
 
@@ -80,7 +91,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
         }
 
         checkInputs();
-        checkSelectorPos();       
+        //checkSelectorPos();       
         
     }
 
@@ -90,59 +101,56 @@ public class InterfaceChangeWeapon : MonoBehaviour
         if(inputs.mouseScroll != 0 || inputs.weap1 || inputs.weap2 || inputs.weap3 || inputs.weap4)
         {
             counter = 2000.0f;
-        }
-    }
-
-    void checkSelectorPos()
-    {        
-        if(weaponSelected != weaponActive)
-        {
-            Debug.Log("Start Transition");
-            changePosSelector(weaponSelector.transform, weaponPanelOptions[weaponSelected].transform);
-            if(transitionFinish)
-            {
-                weaponActive = playerController.weaponSelector;
-            }
-        }
-        else
-        {
-            Debug.Log("Finish Transition");
-            starTime = Time.time;
+            transitionFinish = true;                                
         }
     }
 
     /*
     void checkSelectorPos()
     {
-        int weaponSelected = playerController.weaponSelector;
-
-        if(weaponActive != weaponSelected)
+        if (weaponSelected != weaponActive)
         {
-            Debug.Log("asasd");
-            changePosSelector(weaponSelector.transform,weaponPanelOptions[weaponSelected].transform);
+            Debug.Log("Start Transition");
+            changePosSelector(weaponSelector.transform, weaponPanelOptions[weaponSelected].transform);
+            changeColorPanelOption();
+            if (transitionFinish)
+            {
+                Debug.Log("Finish Transition");
+                weaponActive = playerController.weaponSelector;
+                t = 0;
+            }
         }
-        else
-        {
-            starTime = Time.time;
-            weaponActive = playerController.weaponSelector;
-        }
-
     }*/
 
     void changePosSelector(Transform startPositionLerp,Transform endPositionLerp)
     {
-        float currentDuration = Time.time - starTime;
+        
         distanceToDestination = Vector3.Distance(weaponPanelOptions[weaponActive].transform.position, weaponPanelOptions[playerController.weaponSelector].transform.position);
-        float journeyFraction = currentDuration / distanceToDestination;
-        if(journeyFraction <= 1)
+            
+        t += Time.deltaTime / (2.0f *(distanceToDestination/distance));
+        if(t <= 1)
         {
             transitionFinish = false;
-            weaponSelector.transform.position = Vector3.Lerp(startPositionLerp.position, endPositionLerp.position, journeyFraction);
+            weaponSelector.transform.position = Vector3.Lerp(startPositionLerp.position, endPositionLerp.position, t);
         }
         else
         {
             transitionFinish = true;
+            t = 0;
         }
+    }
+
+    void changeColorPanelOption()
+    {
+        Debug.Log("colorCambiando");
+        imageBeforeColor = weaponPanelOptions[weaponActive].GetComponent<Image>().color;
+        imageNextColor = weaponPanelOptions[weaponSelected].GetComponent<Image>().color;
+
+        imageBeforeColor.a = Mathf.Lerp(imageBeforeColor.a, 0, t);
+        imageNextColor.a = Mathf.Lerp(imageNextColor.a, 200, t);
+
+        weaponPanelOptions[weaponActive].GetComponent<Image>().color = imageBeforeColor;
+        weaponPanelOptions[weaponSelected].GetComponent<Image>().color = imageNextColor;
     }
 
 }
