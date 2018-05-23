@@ -55,8 +55,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907711808752816}
-  m_LocalRotation: {x: 0.018305719, y: 0.81756324, z: -0.026028736, w: 0.574959}
-  m_LocalPosition: {x: -19.494255, y: 18.900229, z: 37.9613}
+  m_LocalRotation: {x: -0.10538803, y: 0.47127992, z: -0.056821816, w: -0.8738191}
+  m_LocalPosition: {x: 19.542717, y: 13.982395, z: -3.7410564}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4780575352207402}
@@ -68,14 +68,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330730764395644}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -20, y: 2.4900002, z: 16.23}
+  m_LocalRotation: {x: -0, y: 0.7153079, z: -0, w: 0.69880944}
+  m_LocalPosition: {x: -27.509, y: 7.25, z: 1.506}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4231531275769666}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 91.337006, z: 0}
 --- !u!20 &20331156208210990
 Camera:
   m_ObjectHideFlags: 1
@@ -109,7 +109,7 @@ Camera:
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
+  m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
 --- !u!23 &23101350907249556
@@ -152,7 +152,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1330730764395644}
-  m_Mesh: {fileID: 4300000, guid: e446fdae7d0f2a148a4c0c38384c8ce8, type: 3}
+  m_Mesh: {fileID: 4300000, guid: c1b73ba9c4202b74d828cdfe47a1f81a, type: 3}
 --- !u!65 &65184035919506768
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -163,8 +163,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 3, z: 0}
-  m_Center: {x: 0, y: 0, z: 0.3}
+  m_Size: {x: 2, y: 4, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!114 &114243804730774010
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,8 +179,8 @@ MonoBehaviour:
   pointB: {fileID: 0}
   scoutCamera: {fileID: 20331156208210990}
   faceNormal: {x: 0, y: 0, z: 1}
-  displacement: {x: 4.018977, y: 0.46977234, z: -1.3913002}
-  normalizedDisplacement: {x: 0.9392652, y: 0, z: -0.3251573}
+  displacement: {x: -7.7049866, y: -2.4823952, z: -8.386114}
+  normalizedDisplacement: {x: -0.66104716, y: 0, z: -0.71948427}
   IsPortalForward: 1
   m_TextureSize: 1080
   m_ClipPlaneOffset: 0.01
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f40342e7dbd6715488d2dc7b210a8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  portales: 0
   PortalPref: {fileID: 1995791198849058, guid: b17538558c008574c8f5e2fd6d6cfce2, type: 2}
+  posDiferenceCopy: {x: 1000, y: 0, z: 0}
 --- !u!114 &114800592564205140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,6 +212,7 @@ MonoBehaviour:
   angleOfPlayer: 0
   displacement: {x: 0, y: 0, z: 0}
   normalizedDisplacement: {x: 0, y: 0, z: 0}
+  objectsInPortal: []
 --- !u!124 &124918746953591660
 Behaviour:
   m_ObjectHideFlags: 1

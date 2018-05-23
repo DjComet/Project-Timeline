@@ -29,9 +29,9 @@ TagManager:
   - 
   - Player
   - Time
-  - 
-  - 
-  - 
+  - Portal
+  - NoCollisionWithPlayer
+  - PortalSurface
   - 
   - 
   - 

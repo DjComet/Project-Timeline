@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class InhibitorWater : MonoBehaviour {
     //A
-    private TimeScaleControl timeScaleControl;
+    private MainClock mainClock;
 
 
 	// Use this for initialization
 	void Start () {
-        timeScaleControl = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeScaleControl>();
+        mainClock = MainClock.mainClock;
 
 	}
 	
@@ -23,7 +23,7 @@ public class InhibitorWater : MonoBehaviour {
     {
         if(other.CompareTag("Player"))
         {
-            timeScaleControl.resetToNormalTime = true;
+            mainClock.resetToNormalTime = true;
         }
     }
 }

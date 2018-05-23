@@ -27,7 +27,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!1 &1192993181860136
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!1 &1227894550419384
 GameObject:
@@ -94,7 +94,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!1 &1453839504085492
 GameObject:
@@ -111,7 +111,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!1 &1498144428109050
 GameObject:
@@ -129,7 +129,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!1 &1749937319689374
 GameObject:
@@ -147,7 +147,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 18
+  m_StaticEditorFlags: 2
   m_IsActive: 1
 --- !u!4 &4096179035941522
 Transform:
@@ -194,8 +194,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1385672393822776}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 22.25, y: 0.00000011920929, z: 23}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -28.25, y: 16, z: -6.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4609411742291618}
@@ -565,11 +565,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55c7576995cae44f8071d14dd83000c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManagerScript: {fileID: 0}
+  clock: {fileID: 0}
+  enableDebug: 0
   actualTarget: 0
   previousTarget: 0
   ownTimeScale: 0
   scaledDT: 0
+  timeEvents: []
+  currentlyCycledTE:
+    repeatable: 0
+    hasRepeatedFwd: 0
+    hasRepeatedBwd: 0
+    time: 0
 --- !u!114 &114804358177455854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -582,7 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedTo: {fileID: 0}
-  objectTimeLine: {fileID: 0}
+  timeLine: {fileID: 0}
   doorRD: {fileID: 4138395504497164}
   doorRU: {fileID: 4425447170702722}
   doorLD: {fileID: 4673367022310244}

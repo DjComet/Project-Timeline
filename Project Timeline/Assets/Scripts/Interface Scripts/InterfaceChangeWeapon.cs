@@ -14,7 +14,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
     public float counter;    
     public int weaponActive;
     public int weaponSelected;
-    public bool transitionFinish;
+    public bool inTranssition;
     private float t;
     //private float tColor;
     //private bool transitionColorFinish;
@@ -23,8 +23,6 @@ public class InterfaceChangeWeapon : MonoBehaviour
 
     private Color imageBeforeColor;
     private Color imageNextColor;
-
-
 
     //public Transform startPositionLerp;
     //public Transform endPositionLerp;
@@ -35,14 +33,15 @@ public class InterfaceChangeWeapon : MonoBehaviour
 
     // Use this for initialization
     void Start()
-    {        
+    { 
+        
         inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<Inputs>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerController>();
         weaponPanel = GameObject.Find("WeaponPanel");
 
         for (int i = 0; i < weaponPanel.transform.childCount; i++)
         {
-            Debug.Log(i);
+            //Debug.Log(i);
             GameObject child = weaponPanel.transform.GetChild(i).gameObject;
             if (child.name == "WeaponIcon01")
             {
@@ -70,9 +69,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
         distance = Vector3.Distance(weaponPanelOptions[0].transform.position, weaponPanelOptions[1].transform.position);
         counter = 0;
         weaponActive = 0;
-        weaponSelector.transform.position = weaponPanelOptions[weaponActive].transform.position;
-        transitionFinish = true;     
-           
+        weaponSelector.transform.position = weaponPanelOptions[weaponActive].transform.position;     
 
     }
 
@@ -91,7 +88,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
         }
 
         checkInputs();
-        //checkSelectorPos();       
+        checkSelectorPos();       
         
     }
 
@@ -101,45 +98,47 @@ public class InterfaceChangeWeapon : MonoBehaviour
         if(inputs.mouseScroll != 0 || inputs.weap1 || inputs.weap2 || inputs.weap3 || inputs.weap4)
         {
             counter = 2000.0f;
-            transitionFinish = true;                                
+            t = 0;             
+            inTranssition = true;                                
         }
     }
 
-    /*
+    
     void checkSelectorPos()
     {
-        if (weaponSelected != weaponActive)
+        if (inTranssition)
         {
-            Debug.Log("Start Transition");
+            Debug.Log(weaponActive);
             changePosSelector(weaponSelector.transform, weaponPanelOptions[weaponSelected].transform);
-            changeColorPanelOption();
-            if (transitionFinish)
+            //changeColorPanelOption();
+            /*if (transitionFinish)
             {
                 Debug.Log("Finish Transition");
                 weaponActive = playerController.weaponSelector;
                 t = 0;
-            }
+            }*/
         }
-    }*/
+    }
 
     void changePosSelector(Transform startPositionLerp,Transform endPositionLerp)
     {
         
         distanceToDestination = Vector3.Distance(weaponPanelOptions[weaponActive].transform.position, weaponPanelOptions[playerController.weaponSelector].transform.position);
             
-        t += Time.deltaTime / (2.0f *(distanceToDestination/distance));
+        t += Time.deltaTime / (2.0f /*(distanceToDestination/distance)*/);
         if(t <= 1)
         {
-            transitionFinish = false;
+            
             weaponSelector.transform.position = Vector3.Lerp(startPositionLerp.position, endPositionLerp.position, t);
         }
         else
         {
-            transitionFinish = true;
+            inTranssition = false;
+            weaponActive = playerController.weaponSelector;
             t = 0;
         }
     }
-
+    /*
     void changeColorPanelOption()
     {
         Debug.Log("colorCambiando");
@@ -152,5 +151,5 @@ public class InterfaceChangeWeapon : MonoBehaviour
         weaponPanelOptions[weaponActive].GetComponent<Image>().color = imageBeforeColor;
         weaponPanelOptions[weaponSelected].GetComponent<Image>().color = imageNextColor;
     }
-
+    */
 }

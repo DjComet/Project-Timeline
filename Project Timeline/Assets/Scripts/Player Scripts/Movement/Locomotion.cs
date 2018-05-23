@@ -19,6 +19,7 @@ public class Locomotion : MonoBehaviour {
     public float speedMagnitude;
     [HideInInspector]
     public Vector3 axisDirection;
+    public Vector3 nextPos;
 
 
    
@@ -73,7 +74,9 @@ public class Locomotion : MonoBehaviour {
         speedMagnitude = speed.magnitude;
         speedMagnitude = Mathf.Clamp(speedMagnitude, 0, values.maxSpeed);
 
-        charCon.Move(axisDirection * speedMagnitude * dt); //Horizontal charCon input;     
+        nextPos = (axisDirection * speedMagnitude * dt);
+
+        charCon.Move(nextPos); //Horizontal charCon input;     
     }
 }
 

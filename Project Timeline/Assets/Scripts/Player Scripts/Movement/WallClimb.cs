@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallClimb : MonoBehaviour {
     //A
-    float dt;
+    float dt = 0;
 
     private Inputs inputs;
     private Values values;

@@ -7,8 +7,8 @@ public class ObjectSineMovement : MonoBehaviour {
     float dt;
 
     //Linear movement, sine movement, axis of movement
-    private TimeScaleControl timeScale;
-    private ObjectTimeLine objectTimeLine;
+    private PlayerTimeScaleControl timeScale;
+    private TimeLine objectTimeLine;
     private ApplyMovementToPlayer applyMovementToPlayer;
     public bool worldSpace;
 
@@ -34,7 +34,7 @@ public class ObjectSineMovement : MonoBehaviour {
         }
         applyMovementToPlayer = gameObject.GetComponent<ApplyMovementToPlayer>();
 
-        objectTimeLine = gameObject.GetComponent<ObjectTimeLine>();
+        objectTimeLine = gameObject.GetComponent<TimeLine>();
         position = transform.position;
         
         realtime = sineMagnitude / 2;

@@ -27,7 +27,8 @@ public class Values : MonoBehaviour {
     
     public bool grounded = false;
     public bool hitCeiling = false;
-    
+
+    public float health = 100f;
 
     public float deltaWallClimb = 1.6f; //MaxDistance from a wall at which you can engage in the "grabbing the slope" action.
 

@@ -9,7 +9,7 @@ public class CameraEffectsController : MonoBehaviour {
     public float targetValue;
     public float previousTValue;
 
-    private TimeScaleControl timeScaleControl;
+    private MainClock mainClock;
     private PostProcessingProfile ppp;
     private GameObject playerCanvas;
     private Image fadingScreen;
@@ -39,7 +39,7 @@ public class CameraEffectsController : MonoBehaviour {
         colorValues[2] = new Color(1.0f, 1.0f, 0.0f, 1.0f);
         colorValues[3] = new Color(1.0f, 0.4f, 0.0f, 1.0f);
         ppp = GetComponent<PostProcessingBehaviour>().profile;
-        timeScaleControl = GameObject.FindGameObjectWithTag("Player").GetComponent<TimeScaleControl>();
+        mainClock = MainClock.mainClock;
 
         playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");       
         for (int i = 0; i < playerCanvas.transform.childCount; i++)
@@ -64,15 +64,15 @@ public class CameraEffectsController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float dt = Time.deltaTime;
-        targetValue = timeScaleControl.targetValue;
+        targetValue = mainClock.targetValue;
         targetValue = Mathf.Clamp(targetValue, -1, acceleratedTimeValue);
 
 
-        acceleratedTimeValue = timeScaleControl.timeValues[4];
-        normalTimeValue = timeScaleControl.timeValues[3];
-        slowedTimeValue = timeScaleControl.timeValues[2];
-        pausedTimeValue = timeScaleControl.timeValues[1];
-        rewindTimeValue = timeScaleControl.timeValues[0];
+        acceleratedTimeValue = mainClock.timeValues[4];
+        normalTimeValue = mainClock.timeValues[3];
+        slowedTimeValue = mainClock.timeValues[2];
+        pausedTimeValue = mainClock.timeValues[1];
+        rewindTimeValue = mainClock.timeValues[0];
 
 
         if (targetValue!= normalTimeValue)
@@ -118,7 +118,7 @@ public class CameraEffectsController : MonoBehaviour {
     //Set color with the player variable tValue
     void calculateColor()
     {
-        if (timeScaleControl.rewindHasBeenPressed)
+        if (mainClock.rewindActivated)
         {
                 color = colorValues[1];
                 var gradSettings = ppp.colorGrading.settings;
@@ -127,7 +127,7 @@ public class CameraEffectsController : MonoBehaviour {
                 lastColor = "red";
                 previousTValue = targetValue;
         }
-        else if (timeScaleControl.pauseHasBeenPressed)
+        else if (mainClock.pauseActivated)
         {
             color = colorValues[0];            
             var gradSettings = ppp.colorGrading.settings;
@@ -136,7 +136,7 @@ public class CameraEffectsController : MonoBehaviour {
             lastColor = "blue";
             previousTValue = targetValue;
         }
-        else if (timeScaleControl.slowHasBeenPressed)
+        else if (mainClock.slowActivated)
         {
             color = colorValues[2];
             var gradSettings = ppp.colorGrading.settings;
@@ -147,7 +147,7 @@ public class CameraEffectsController : MonoBehaviour {
             lastColor = "yellow";
             previousTValue = targetValue;
         }
-        else if (timeScaleControl.accelHasBeenPressed)
+        else if (mainClock.accelActivated)
         {
             color = colorValues[3];
             var gradSettings = ppp.colorGrading.settings;

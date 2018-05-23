@@ -19,7 +19,7 @@ public class MainPlayerController : MonoBehaviour {
     public bool isOnWallEdge = false;
     public bool isOnLadder = false;
 
-    private TimeScaleControl timeScaleControl;
+    private PlayerTimeScaleControl timeScaleControl;
     private IsolationBomb isolationBomb;
     private PortalCreator portalCreator;
     private TimeSphere timeSphere;
@@ -40,7 +40,7 @@ public class MainPlayerController : MonoBehaviour {
         ladderClimb = gameObject.GetComponent<LadderClimb>();
         oldAcceleration = values.acceleration;
         oldMaxSpeed = values.maxSpeed;
-        timeScaleControl = gameObject.GetComponent<TimeScaleControl>();
+        timeScaleControl = gameObject.GetComponent<PlayerTimeScaleControl>();
         isolationBomb = gameObject.GetComponent<IsolationBomb>();
         portalCreator = gameObject.GetComponent<PortalCreator>();
         timeSphere = gameObject.GetComponent<TimeSphere>();
@@ -52,12 +52,8 @@ public class MainPlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        ChangeState();
-
-        if(interfaceChangeWeapon.transitionFinish)//Is necesary finish the lerp before change to other weapon
-        { 
-            ChangeWeapon();
-        }
+        ChangeState();      
+        ChangeWeapon();      
         
         
 	}

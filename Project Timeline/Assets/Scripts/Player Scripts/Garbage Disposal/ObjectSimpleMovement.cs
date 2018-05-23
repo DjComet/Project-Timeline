@@ -7,8 +7,8 @@ public class ObjectSimpleMovement : MonoBehaviour {
     float dt;
 
     //Linear movement, sine movement, axis of movement
-    private TimeScaleControl timeScale;
-    private ObjectTimeLine scaledDeltaTime;
+    private PlayerTimeScaleControl timeScale;
+    private TimeLine scaledDeltaTime;
     
     public float sineFrequency = 1f;
     public float sineMagnitude = 10f;
@@ -24,7 +24,7 @@ public class ObjectSimpleMovement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        scaledDeltaTime = gameObject.GetComponent<ObjectTimeLine>();
+        scaledDeltaTime = gameObject.GetComponent<TimeLine>();
         position = transform.position;
         
         realtime = sineMagnitude / 2;

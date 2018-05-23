@@ -28,7 +28,7 @@ public class RigidBodyTimeControl : MonoBehaviour {
 
     #region Variables Declaration
     private Rigidbody rb;
-    private ObjectTimeLine objectTimeline;
+    private TimeLine objectTimeline;
     private PositiveTimeScript positiveTimeScript;
 
 
@@ -108,7 +108,7 @@ public class RigidBodyTimeControl : MonoBehaviour {
     {
         pointsInTime = new List<PointInTime>();
         rb = gameObject.GetComponent<Rigidbody>();
-        objectTimeline = gameObject.GetComponent<ObjectTimeLine>();
+        objectTimeline = gameObject.GetComponent<TimeLine>();
         counter = 0;
         pointsInTime.Insert(0, new PointInTime(transform, rb.velocity, rb.angularVelocity, currentTime, number));
         timeScale = _timeScale;
@@ -118,14 +118,14 @@ public class RigidBodyTimeControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float acceleratedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[4];
-        float normalTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[3];
-        float slowedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[2];
-        float pausedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[1];
-        float rewindTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[0];
+        float acceleratedTimeValue = objectTimeline.clock.timeValues[4];
+        float normalTimeValue = objectTimeline.clock.timeValues[3];
+        float slowedTimeValue = objectTimeline.clock.timeValues[2];
+        float pausedTimeValue = objectTimeline.clock.timeValues[1];
+        float rewindTimeValue = objectTimeline.clock.timeValues[0];
 
 
-        currentTime = objectTimeline.timeManagerScript.currentTime;
+        currentTime = objectTimeline.clock.currentTime;
 
         if (objectTimeline.ownTimeScale < pausedTimeValue)
             isRewinding = true;

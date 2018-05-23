@@ -42,7 +42,7 @@ MonoBehaviour:
   ambientOcclusion:
     m_Enabled: 0
     m_Settings:
-      intensity: 1
+      intensity: 0
       radius: 0.3
       sampleCount: 10
       downsampling: 1
@@ -55,14 +55,14 @@ MonoBehaviour:
       reflection:
         blendType: 0
         reflectionQuality: 2
-        maxDistance: 100
+        maxDistance: 84
         iterationCount: 256
         stepSize: 3
         widthModifier: 0.5
         reflectionBlur: 1
         reflectBackfaces: 0
       intensity:
-        reflectionMultiplier: 1
+        reflectionMultiplier: 0.76
         fadeDistance: 100
         fresnelFade: 1
         fresnelFadePower: 1
@@ -72,16 +72,16 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       focusDistance: 10
-      aperture: 18
+      aperture: 3
       focalLength: 104
       useCameraFov: 1
       kernelSize: 2
   motionBlur:
     m_Enabled: 0
     m_Settings:
-      shutterAngle: 136
-      sampleCount: 7
-      frameBlending: 0.057
+      shutterAngle: 134
+      sampleCount: 8
+      frameBlending: 0.121
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
@@ -97,7 +97,7 @@ MonoBehaviour:
       logMin: -16
       logMax: 8
   bloom:
-    m_Enabled: 0
+    m_Enabled: 1
     m_Settings:
       bloom:
         intensity: 0.2
@@ -300,7 +300,7 @@ MonoBehaviour:
       center: {x: 0.5, y: 0.5}
       intensity: 0
       smoothness: 1
-      roundness: 0.752
+      roundness: 1
       mask: {fileID: 0}
       opacity: 1
       rounded: 0

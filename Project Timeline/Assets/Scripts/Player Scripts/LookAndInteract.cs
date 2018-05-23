@@ -6,23 +6,31 @@ public class LookAndInteract : MonoBehaviour {
     //A
     private Inputs inputs;
     private Camera cam;
+    public static LookAndInteract lookAndInteract;
+    public RaycastHit hit;
 
-    [SerializeField] private LayerMask name;
+    [SerializeField]new private LayerMask name;
     public float maxDistance = 2.3f;
     private float distance;
 
     public bool rayHit = false;
 
+    private void Awake()
+    {
+        lookAndInteract = this;
+    }
+
     void Start()
     {
-        inputs = GetComponent<Inputs>();
+        
+        inputs = Inputs.inputsScript;
         cam = Camera.main;
         distance = maxDistance;
     }
 
     void Update()
     {
-        RaycastHit hit;
+        
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         
         if(Physics.Raycast(ray, out hit, maxDistance, name))
@@ -39,27 +47,39 @@ public class LookAndInteract : MonoBehaviour {
             if (hit.collider.tag == ("RayInteract"))
             {
                 rayHit = true;
+                Debug.DrawRay(ray.origin, ray.direction.normalized * distance, Color.yellow);
                 if (inputs.actionRight)
                 {
-                    if (hit.transform.GetComponent<Linker>())
+                    if (hit.transform.GetComponent<LeverMovement>())
                     {
-                        bool active = hit.transform.GetComponent<Linker>().active;
-                        active = !active;
-                        hit.transform.GetComponent<Linker>().active = active;
-
+                        LeverMovement leverMovement = hit.transform.GetComponent<LeverMovement>();
+                        if (leverMovement.active) //DEACTIVATE
+                        {
+                            leverMovement.timeEventSetInactive();
+                        }
+                        else //ACTIVATE
+                        { 
+                            leverMovement.timeEventSetActive();
+                        }
                     }
                 }
+            }
+            else
+            {
+                Debug.DrawRay(ray.origin, ray.direction.normalized * distance, Color.red);
+                rayHit = false;
             }
             
         }
         else
         {
+            Debug.DrawRay(ray.origin, ray.direction.normalized * distance, Color.red);
             distance = maxDistance;
             rayHit = false;
         }
 
 
-        Debug.DrawRay(ray.origin, ray.direction.normalized * distance, Color.yellow);
+        
     }
 }
 

@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class CameraClampMovement : MonoBehaviour{
     //JA
+    [ExecuteInEditMode]
     private GameObject player;
     private Inputs inputs;
     public float distanceFromCenterOfPlayer = 0.81f;
 
-    public float sensitivityX = 15.0f;
-    public float sensitivityY = 15.0f;
+    public bool invertYaw = false;
+    public bool invertPitch = false;
+    int invYaw = 1;
+    int invPitch = 1;
+
+    [Range(0,15)]public float sensitivityYaw = 15.0f;
+    [Range(0, 15)] public float sensitivityPitch = 15.0f;
 
     public float minimumX = -360.0f;
     public float maximumX = 360.0f;
 
-    public float minimumY = -60.0f;
-    public float maximumY = 60.0f;
+    public float minimumY = -80.0f;
+    public float maximumY = 80.0f;
 
-    private float xAngle = 0.0f;
-    private float yAngle = 0.0f;
+    public float yaw = 0.0f;
+    public float pitch = 0.0f;
 
-   
+    
     Quaternion originalRotation;
     Quaternion playerOriginalRotation;
 
@@ -33,34 +39,45 @@ public class CameraClampMovement : MonoBehaviour{
         {
             rb.freezeRotation = true;
         }
-        originalRotation = transform.localRotation;
-        playerOriginalRotation = player.transform.localRotation;
+        originalRotation = transform.rotation;
+        playerOriginalRotation = player.transform.rotation;
         
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void LateUpdate()
+    private void Update()
     {
+        invPitch = (invertPitch ? 1 : -1);
+        invYaw = (invertYaw ? -1 : 1);
+    }
+
+    void LateUpdate()
+    { 
+        yaw = transform.localEulerAngles.y;
+        //pitch = transform.eulerAngles.x; //Pasan cosas to raras con esto. Al llegar a x=0, x retorna a 80 automaticamente.
+
+
         transform.position = player.transform.position + player.transform.up * distanceFromCenterOfPlayer;
         //Gets rotational input from the mouse
-        xAngle += Input.GetAxis("MouseX") * sensitivityX;
-        yAngle += Input.GetAxis("MouseY") * sensitivityY;
+        yaw += Input.GetAxis("MouseX") * sensitivityYaw * invYaw;
+        pitch += Input.GetAxis("MouseY") * sensitivityPitch * invPitch;
 
         //Clamp rotation angles
-        xAngle = ClampAngle(xAngle, minimumX, maximumX);
-        yAngle = ClampAngle(yAngle, minimumY, maximumY);
+        pitch = Mathf.Clamp(pitch, minimumY, maximumY);
+        //yaw = ClampAngle(yaw, minimumX, maximumX);
+        //pitch = ClampAngle(pitch, minimumY, maximumY);
 
         //Create rotations around axis
-        Quaternion leftQuaternion = Quaternion.AngleAxis(yAngle, Vector3.left);
-        Quaternion upQuaternion = Quaternion.AngleAxis(xAngle, Vector3.up);
+        //Quaternion leftQuaternion = Quaternion.AngleAxis(pitch, Vector3.left);
+        //Quaternion upQuaternion = Quaternion.AngleAxis(yaw, Vector3.up);
 
         //Rotate
-        transform.localRotation = originalRotation * upQuaternion * leftQuaternion;
+        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
         player.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
     }
 
-    public static float ClampAngle(float angle, float min, float max)
+    /*public static float ClampAngle(float angle, float min, float max)//Works for quaternions
     {
         angle = angle % 360;
         if ((angle >= -360.0f) && (angle <= 360.0f))
@@ -75,5 +92,5 @@ public class CameraClampMovement : MonoBehaviour{
             }
         }
         return Mathf.Clamp(angle, min, max);
-    }
+    }*/
 }
