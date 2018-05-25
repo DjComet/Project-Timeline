@@ -19,9 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4539198784081644}
-  - component: {fileID: 114980978473914652}
-  - component: {fileID: 114954049285924502}
   - component: {fileID: 114675680397064990}
+  - component: {fileID: 114699129623755298}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: TimeManager
@@ -53,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e75088b0a0368b459441bd47067ac04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114954049285924502
+--- !u!114 &114699129623755298
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -61,24 +60,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 1171417239971180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a20ef3827244de14990dd5fcc186ace1, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bf4d7946a9a9bb468178fa83dc150e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elapsedTime: 0
-  ownTimeScale: 0
-  timeLayer: 9
-  objectsInTimeLayer: []
-  iterated: 0
---- !u!114 &114980978473914652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1171417239971180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11c6a929da558734ea580a1c6772f7a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elapsedTime: 0
-  ownTimeScale: 0
+  enableDebug: 0
+  resetToNormalTime: 0
+  timeValues:
+  - -1
+  - 0
+  - 0.2
+  - 1
+  - 2
+  targetValue: 1
+  ownTimeScale: 1
+  previousTargetValue: 0
+  increment: 0.5
+  minValueToRewind: -1
+  maxValueToRewind: -5
+  keepIncreasingValue: 0
+  i: 3
+  notSet: 1
+  maxSlidingSpeed: 1
+  slidingAcceleration: 0.07
+  slidingSpeed: 0
+  acceleratedTimeValue: 0
+  normalTimeValue: 0
+  slowedTimeValue: 0
+  pausedTimeValue: 0
+  rewindTimeValue: 0
+  currentTime: 0
+  scaledDt: 0
+  accelActivated: 0
+  slowActivated: 0
+  pauseActivated: 0
+  rewindActivated: 0

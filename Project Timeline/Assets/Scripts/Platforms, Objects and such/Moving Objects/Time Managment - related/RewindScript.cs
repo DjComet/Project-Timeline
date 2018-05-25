@@ -25,11 +25,11 @@ public struct PointInTime
     }
 }
 
-public class RewindScript : MonoBehaviour {
+public class RewindScript : RigidbodySettings {
 
 #region Variables Declaration
-    private Rigidbody rb;
-    private ObjectTimeLine objectTimeline;
+    
+    private TimeLine objectTimeline;
     private PositiveTimeScript positiveTimeScript;
     public bool enableDebug = false;
 
@@ -38,7 +38,7 @@ public class RewindScript : MonoBehaviour {
     public List<PointInTime> pointsInTime;
     private float currentTime;
     public bool isRewinding = false;
-    public float recordTime = 5f;
+    public float recordTime = 10f;
     public bool hasAppliedStop = true;
     public float counter = 0;
     private float t = 0;
@@ -57,8 +57,8 @@ public class RewindScript : MonoBehaviour {
     // Use this for initialization
     void Awake () {
         pointsInTime = new List<PointInTime>();
-        rb = gameObject.GetComponent<Rigidbody>();
-        objectTimeline = gameObject.GetComponent<ObjectTimeLine>();
+        rb = GetComponent<Rigidbody>();
+        objectTimeline = gameObject.GetComponent<TimeLine>();
         positiveTimeScript = gameObject.GetComponent<PositiveTimeScript>();
         counter = 0;
         pointsInTime.Insert(0, new PointInTime(transform, rb.velocity, rb.angularVelocity, currentTime, number));
@@ -67,10 +67,10 @@ public class RewindScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        float pausedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[1];
-        float rewindTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[0];
+        float pausedTimeValue = objectTimeline.clock.timeValues[1];
+        float rewindTimeValue = objectTimeline.clock.timeValues[0];
 
-        currentTime = objectTimeline.timeManagerScript.currentTime;
+        currentTime = objectTimeline.clock.currentTime;
 
         if (objectTimeline.ownTimeScale < pausedTimeValue)
             isRewinding = true;
@@ -83,7 +83,7 @@ public class RewindScript : MonoBehaviour {
 
         if (isRewinding)
         {
-            rb.isKinematic = true;
+            makeKinematic();
             Rewind();
             hasAppliedStop = false;
             
@@ -181,8 +181,8 @@ public class RewindScript : MonoBehaviour {
 
     public void StopRewind()
     {
-        
-        rb.isKinematic = false;
+
+        makeNotKinematic();
         ReapplyForces();
         canInitializeLerp = true;//Super important
     }
@@ -198,6 +198,8 @@ public class RewindScript : MonoBehaviour {
         //something like 0.09. 7/0.09 is 77, a lot more than what we want, and next frame it will be even bigger. Now, if instead we first multiply 7 by 0.09, and then it gets
         //carried on to the positive time script with that small value, it will get multiplied by 0.09 again which will return exactly the number we want for both vel and angVel.
     }
+
+    
 
     #endregion
 

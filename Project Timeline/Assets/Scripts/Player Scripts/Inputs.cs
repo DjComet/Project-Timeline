@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inputs : MonoBehaviour {
     //A
+    public static Inputs inputsScript;
+
     public float horizontal;
     public float vertical;
     public bool jump;
@@ -30,9 +32,13 @@ public class Inputs : MonoBehaviour {
     public bool weap3;
     public bool weap4;
 
-	// Use this for initialization
-	void Start () {
-		
+    private void Awake()
+    {
+        inputsScript = this;
+    }
+    // Use this for initialization
+    void Start () {
+        
 	}
 	
 	// Update is called once per frame

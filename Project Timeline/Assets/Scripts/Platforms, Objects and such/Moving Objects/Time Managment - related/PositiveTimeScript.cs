@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositiveTimeScript : MonoBehaviour {
+public class PositiveTimeScript : RigidbodySettings {
     //A [SUFRIMIENTO]
     #region Variables Declaration
     public bool enableDebug;
     bool first = true;
     bool applied = true;
-    private Rigidbody rb;
-    private ObjectTimeLine objectTimeline;
+    
+    private TimeLine timeLine;
     private RewindScript rewindScript;
     public float direction;
 
@@ -55,7 +55,7 @@ public class PositiveTimeScript : MonoBehaviour {
     void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody>();
-        objectTimeline = gameObject.GetComponent<ObjectTimeLine>();
+        timeLine = gameObject.GetComponent<TimeLine>();
         rewindScript = gameObject.GetComponent<RewindScript>();
         timeScale = _timeScale;
     }
@@ -63,12 +63,12 @@ public class PositiveTimeScript : MonoBehaviour {
 
     void Update()
     {
-        direction = Mathf.Sign(objectTimeline.actualTarget - objectTimeline.previousTarget);
+        direction = Mathf.Sign(timeLine.actualTarget - timeLine.previousTarget);
 
 
         if(enableDebug)
         {
-            Debug.Log("ownTimescale: " + objectTimeline.ownTimeScale);
+            Debug.Log("ownTimescale: " + timeLine.ownTimeScale);
             Debug.Log("Timescale: " + timeScale);
             Debug.Log("Velocity: " + rb.velocity);
             Debug.Log("AngVelocity: " + rb.angularVelocity);
@@ -77,30 +77,30 @@ public class PositiveTimeScript : MonoBehaviour {
         //                        i=    0       1      2     3          4
         //Different TimeScale values: Rewind, Pause, Slow, Normal, Accelerated.
 
-        float acceleratedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[4];
-        float normalTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[3];
-        float slowedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[2];
-        float pausedTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[1];
-        float rewindTimeValue = objectTimeline.timeManagerScript.timeScaleControl.timeValues[0];
+        float acceleratedTimeValue = timeLine.clock.timeValues[4];
+        float normalTimeValue = timeLine.clock.timeValues[3];
+        float slowedTimeValue = timeLine.clock.timeValues[2];
+        float pausedTimeValue = timeLine.clock.timeValues[1];
+        float rewindTimeValue = timeLine.clock.timeValues[0];
 
 
         #region Calculations of TimeScale relative to the ownTimeScale values
 
-        if (objectTimeline.ownTimeScale == normalTimeValue)
+        if (timeLine.ownTimeScale == normalTimeValue)
         {//             Normal
-            rb.isKinematic = false;
-            rb.useGravity = true;
+            makeNotKinematic();
+            makeGrav();
             timeScale = 1;
         }//                                           0                                           1                                           1             
-        else if (((objectTimeline.ownTimeScale > pausedTimeValue && objectTimeline.ownTimeScale < normalTimeValue) || objectTimeline.ownTimeScale > normalTimeValue))
+        else if (((timeLine.ownTimeScale > pausedTimeValue && timeLine.ownTimeScale < normalTimeValue) || timeLine.ownTimeScale > normalTimeValue))
         {//                                                     Slow                                                                            Fast         
-            rb.useGravity = false;
-            rb.isKinematic = false;
+            makeIngrav();
+            makeNotKinematic();
 
-            if (objectTimeline.ownTimeScale > 0.01f)
+            if (timeLine.ownTimeScale > 0.01f)
             {
                                                         //This is to avoid crazy velocity spikes when the fraction x/0.0000y(<-TimeScale) returns something too big (when going back from 0 to normal time, the divisor is smaller than the dividend, 
-                timeScale = objectTimeline.ownTimeScale;//and being the divisor smaller than 1, this causes extremely high numbers when very close to 0).
+                timeScale = timeLine.ownTimeScale;//and being the divisor smaller than 1, this causes extremely high numbers when very close to 0).
                 temporalTS = timeScale;
             }
             
@@ -113,10 +113,10 @@ public class PositiveTimeScript : MonoBehaviour {
             }
             
         }
-        else if (objectTimeline.ownTimeScale == pausedTimeValue)
+        else if (timeLine.ownTimeScale == pausedTimeValue)
         {//                   Pause
             if(enableDebug) Debug.Log("Rigids are kinematic: We are in PAUSE");
-            rb.isKinematic = true;
+            makeKinematic();
             applied = false;
         }
         #endregion
@@ -125,14 +125,14 @@ public class PositiveTimeScript : MonoBehaviour {
         #region Forces storage and application
 
         //Store rigidbody's velocity, angVelocity and mass before making it kinematic on pause...
-        if (direction < 0 && objectTimeline.actualTarget == pausedTimeValue && objectTimeline.ownTimeScale > pausedTimeValue)
+        if (direction < 0 && timeLine.actualTarget == pausedTimeValue && timeLine.ownTimeScale > pausedTimeValue)
         {
             if (enableDebug) Debug.Log("Storing velocities for pause and stuff");
             previousVelocity = rb.velocity;
             previousAngVelocity = rb.angularVelocity;
             previousMass = rb.mass;
         }
-        else if (direction > 0 && objectTimeline.previousTarget == pausedTimeValue)
+        else if (direction > 0 && timeLine.previousTarget == pausedTimeValue)
         {//... and reapply them ONCE after no longer being paused or rewinded.
             if (!applied)
             {

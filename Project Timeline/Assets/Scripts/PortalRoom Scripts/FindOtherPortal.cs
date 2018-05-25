@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class FindOtherPortal : MonoBehaviour {
 
-    public bool portales = false;
-
-    
     public GameObject PortalPref;
+    public Vector3 posDiferenceCopy = Vector3.zero;
 
     private GameObject otherP;
+    private GameObject pref;
+    private GameObject roomChange = null;
 
     // Use this for initialization
     void Start () {
         if(this.tag == "PortalA")
         {
-            GameObject roomChange = GameObject.FindGameObjectWithTag("OriginalRoomChange");
             if(GameObject.FindGameObjectWithTag("OriginalRoom")!= null)
             {
-                GameObject roomChangeCopy = GameObject.Instantiate(roomChange,
-                    transform.position + GameObject.FindGameObjectWithTag("OriginalRoom").GetComponent<CopyRoom>().pos,
+                posDiferenceCopy = GameObject.FindGameObjectWithTag("OriginalRoom").GetComponent<CopyRoom>().pos;
+                roomChange = GameObject.Instantiate(GameObject.FindGameObjectWithTag("OriginalRoomChange"),
+                    posDiferenceCopy + GameObject.FindGameObjectWithTag("OriginalRoom").GetComponent<CopyRoom>().pos,
                     Quaternion.Euler(GameObject.FindGameObjectWithTag("OriginalRoom").GetComponent<CopyRoom>().rot));
-                roomChangeCopy.tag = "CopyRoomChange";
+                roomChange.tag = "CopyRoomChange";
             }
             
         }
@@ -32,19 +32,26 @@ public class FindOtherPortal : MonoBehaviour {
 	void Update () {
         if (GameObject.FindGameObjectWithTag("PortalB") && !this.GetComponent<StepThroughPortal>().otherPortal)
         {
-            portales = true;
             if (this.tag == "PortalB")
             {
                 otherP = GameObject.FindGameObjectWithTag("PortalA");
             }
             if (this.tag == "PortalA")
             {
-                GameObject.Instantiate(PortalPref, transform.position, transform.rotation);
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 120);
+                pref = GameObject.Instantiate(PortalPref, transform.position, transform.rotation);
+                transform.position += posDiferenceCopy;
                 otherP = GameObject.FindGameObjectWithTag("PortalB");
             }
             this.GetComponent<StepThroughPortal>().otherPortal = otherP.transform;
             this.GetComponent<PortalView>().pointB = otherP.transform;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (this.tag == "PortalA"){
+            Destroy(roomChange);
+            Destroy(pref);
         }
     }
 }

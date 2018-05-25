@@ -70,15 +70,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1257220467740294}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -18, y: 17.25, z: -10.25}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -19.5, y: 17.25, z: -0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4233683449532090}
   - {fileID: 4714369701990114}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4233683449532090
 Transform:
   m_ObjectHideFlags: 1
@@ -212,11 +212,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55c7576995cae44f8071d14dd83000c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManagerScript: {fileID: 0}
+  clock: {fileID: 0}
+  enableDebug: 0
   actualTarget: 0
   previousTarget: 0
   ownTimeScale: 0
   scaledDT: 0
+  timeEvents: []
+  currentlyCycledTE:
+    repeatable: 0
+    hasRepeatedFwd: 0
+    hasRepeatedBwd: 0
+    time: 0
 --- !u!114 &114904765225528370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -228,6 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4593de7203fca484daa73d052b84a1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activate: 0
   active: 0
 --- !u!114 &114935397523733010
 MonoBehaviour:
@@ -241,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lever: {fileID: 4233683449532090}
-  leverTime: 0.6
+  leverTime: 0
   active: 0
   lerpSpeed: 4
   targetAngle: 133

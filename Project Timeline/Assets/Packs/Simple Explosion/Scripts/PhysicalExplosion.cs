@@ -4,21 +4,21 @@ using System.Collections;
 public class PhysicalExplosion : MonoBehaviour 
 {
     public float timer = 0.5f;
-    public ObjectTimeLine objectTimeLine;
+    public TimeLine timeLine;
 
     public float Radius;// explosion radius
     public float Force;// explosion force
 
     private void Start()
     {
-        objectTimeLine = gameObject.GetComponent<ObjectTimeLine>();
+        timeLine = gameObject.GetComponent<TimeLine>();
     }
 
     void Update () 
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, Radius);// create explosion
 
-        if (objectTimeLine.timeManagerScript.currentTime >= timer && objectTimeLine.timeManagerScript.currentTime <= timer + 0.5f)
+        if (timeLine.clock.currentTime >= timer && timeLine.clock.currentTime <= timer + 0.5f)
         {
             
             for (int i = 0; i < hitColliders.Length; i++)

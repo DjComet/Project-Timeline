@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class LeverMovement : MonoBehaviour {
     //A
-    private ObjectTimeLine objectTimeLine;
+    private TimeLine timeLine;
     private Linker linker;
-
+    private TimeManagerScript timeManager;
     public Transform lever;
+    public bool enableDebug;
 
     public float leverTime = 0.0f;
     float timer = 0;
 
+
     public bool active = false;
+
+
     public float lerpSpeed = 10.0f;
     private Quaternion initialRot;
     private Quaternion targetRot;// = Quaternion.identity;
@@ -22,8 +26,9 @@ public class LeverMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        objectTimeLine = GetComponent<ObjectTimeLine>();
+        timeLine = GetComponent<TimeLine>();
         linker = GetComponent<Linker>();
+        timeManager = TimeManagerScript.timeManager;
 
         initialRot = lever.localRotation;
         targetRot = Quaternion.Euler(targetAngle, 0, 0);
@@ -34,7 +39,7 @@ public class LeverMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        setActive();
+        
 
         t = Mathf.Clamp01(t);
 
@@ -42,11 +47,14 @@ public class LeverMovement : MonoBehaviour {
         {
             if (active)
             {
-                timer += objectTimeLine.scaledDT;
+                timer += Mathf.Abs(timeLine.scaledDT);
 
                 if (timer >= leverTime)
                 {
-                    active = false;
+                    if(!timeLine.isEventOverlapping())
+                    timeEventSetInactive();
+
+                    linker.activate = false;
                     timer = 0;
                 }
             }
@@ -55,12 +63,12 @@ public class LeverMovement : MonoBehaviour {
 
         if (active)
         {
-            t += lerpSpeed * objectTimeLine.scaledDT;
+            t += lerpSpeed * Mathf.Abs(timeLine.scaledDT);
             linker.active = true;
         }
         else
         {
-            t -= lerpSpeed * objectTimeLine.scaledDT;
+            t -= lerpSpeed * Mathf.Abs(timeLine.scaledDT);
             linker.active = false;
             timer = 0;//redundancy just in case
         }
@@ -70,15 +78,45 @@ public class LeverMovement : MonoBehaviour {
 
 	}
 
-    void setActive()
+    public void setActive()
     {
-        if(linker.active)
-        {
-            active = true;
-        }
-        else
-        {
-            active = false;
-        }
+        if(enableDebug)Debug.Log("Se ha llamado a setactive");
+        active = true; 
     }
+
+    public void setInactive()
+    {
+        if(enableDebug)Debug.Log("Se ha llamado a setInactive");
+        active = false;
+    }
+
+    public void timeEventSetActive()
+    {
+        //Create event where forward = setActive && backwards = setInactive. Repeatable = true.
+        timeLine.createTimeEvent(
+        true,
+        delegate {
+            setActive();
+        },
+        delegate {
+            setInactive();
+        });
+        
+    }
+
+    public void timeEventSetInactive()
+    {
+        //Create event where forward = setInactive && backwards = setActive. Repeatable = true.
+        timeLine.createTimeEvent(
+            true,
+            delegate {
+                setInactive();
+            },
+            delegate {
+                setActive();
+            });
+
+        
+    }
+
 }

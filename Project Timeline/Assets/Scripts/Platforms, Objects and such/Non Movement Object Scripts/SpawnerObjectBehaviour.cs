@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnerObjectBehaviour : MonoBehaviour {
     //A
-    ObjectTimeLine objectTimeLine;
+    TimeLine timeLine;
     public GameObject objectToSpawn;
     public GameObject connectedTo;
     public bool active;
@@ -13,7 +13,7 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        objectTimeLine = GetComponent<ObjectTimeLine>();
+        timeLine = GetComponent<TimeLine>();
         if (!renderThisObjectOnPlay)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)

@@ -6,8 +6,9 @@ public class ButtonPressMovement : MonoBehaviour {
     //A
     float scaledDt;
 
-    private ObjectTimeLine objectTimeLine;
+    private TimeLine timeLine;
     private Linker linker;
+    public List<Collider> colliders = new List<Collider>();
 
     public Transform button;
     public Transform buttonBase;
@@ -22,7 +23,7 @@ public class ButtonPressMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        objectTimeLine = gameObject.GetComponent<ObjectTimeLine>();
+        timeLine = gameObject.GetComponent<TimeLine>();
         linker = gameObject.GetComponent<Linker>();
         initialPos = button.position;
         targetPos = buttonBase.position;
@@ -30,17 +31,17 @@ public class ButtonPressMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        scaledDt = objectTimeLine.scaledDT;
+        scaledDt = timeLine.scaledDT;
         t = Mathf.Clamp01(t);
         linker.active = active;
 
         if (active)
         {          
-            t += scaledDt * pressSpeed;   
+            t += Mathf.Abs(scaledDt) * pressSpeed;   
         }
         else
         {   
-            t -= scaledDt * pressSpeed;
+            t -= Mathf.Abs(scaledDt) * pressSpeed;
         }
 
         button.position = Vector3.Lerp(initialPos, targetPos, t);
@@ -48,10 +49,64 @@ public class ButtonPressMovement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        active = true;
+        
+            if (!timeLine.isEventOverlapping())
+            {//Create event where forward = setActive && backwards = setInactive. Repeatable = true.
+                timeLine.createTimeEvent(
+                true,
+                delegate
+                {
+                    setActive();
+                },
+                delegate
+                {
+                    setInactive();
+                });
+                colliders.Add(other);
+                
+            }
+        
+        
+        
     }
 
     private void OnTriggerExit(Collider other)
+    {
+        //Create event where forward = setInactive && backwards = setActive. Repeatable = true.
+        //timeLine.createTimeEvent(/*  args  */);
+        for(int i = colliders.Count -1; i>=0; i--)
+        {
+            if(colliders[i] == other)
+            {
+                colliders.RemoveAt(i);
+            }
+        }
+
+        if (colliders.Count == 0 && !timeLine.isEventOverlapping())
+        {
+            
+                timeLine.createTimeEvent(
+                    true,
+                    delegate
+                    {
+                        setInactive();
+                    },
+                    delegate
+                    {
+                        setActive();
+                    });
+            
+            
+        }
+        
+    }
+
+    public void setActive()
+    {
+        active = true;
+    }
+
+    public void setInactive()
     {
         active = false;
     }

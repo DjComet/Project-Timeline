@@ -14,8 +14,7 @@ public class CanvasUpdater : MonoBehaviour {
     private Image crosshair;
 
     private GameObject player;
-    private TimeScaleControl timeScaleControl;
-    private TimeManagerScript timeManagerScript;
+    private MainClock mainClock;
     private LookAndInteract lookAndInteract;
 
     private float energyAmount;
@@ -25,9 +24,9 @@ public class CanvasUpdater : MonoBehaviour {
         playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");
         player = GameObject.FindGameObjectWithTag("Player");
         inputs = player.GetComponent<Inputs>();
-        timeScaleControl = player.GetComponent<TimeScaleControl>();
+        
         lookAndInteract = player.GetComponent<LookAndInteract>();
-        timeManagerScript = gameObject.GetComponent<TimeManagerScript>();
+        mainClock = MainClock.mainClock;
 
         for (int i = 0; i < playerCanvas.transform.childCount; i++)
         {
@@ -39,11 +38,11 @@ public class CanvasUpdater : MonoBehaviour {
             else if (child.name == "EnergySlider")
             {
                 energySlider = child.GetComponent<Slider>();
-                if (timeScaleControl != null && timeScaleControl.energy != null)
+                if (mainClock != null)
                 {
-                    energySlider.maxValue = timeScaleControl.energy.maxEnergyAmt;
+                    energySlider.maxValue = PlayerEnergy.maxEnergyAmt;
 
-                    energyAmount = timeScaleControl.energy.maxEnergyAmt;
+                    energyAmount = PlayerEnergy.maxEnergyAmt;
                 }
             }
             else if (child.name == "MouseClickHint")
@@ -64,17 +63,17 @@ public class CanvasUpdater : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        float acceleratedTimeValue = timeManagerScript.timeScaleControl.timeValues[4];
-        float normalTimeValue = timeManagerScript.timeScaleControl.timeValues[3];
-        float slowedTimeValue = timeManagerScript.timeScaleControl.timeValues[2];
-        float pausedTimeValue = timeManagerScript.timeScaleControl.timeValues[1];
-        float rewindTimeValue = timeManagerScript.timeScaleControl.timeValues[0];
+        float acceleratedTimeValue = mainClock.timeValues[4];
+        float normalTimeValue = mainClock.timeValues[3];
+        float slowedTimeValue = mainClock.timeValues[2];
+        float pausedTimeValue = mainClock.timeValues[1];
+        float rewindTimeValue = mainClock.timeValues[0];
 
 
-        if (timeScaleControl != null && timeScaleControl.energy != null)
+        if (mainClock != null)
         {
             changeUI();
-            currentTime.text = timeManagerScript.currentTime.ToString("#.00");
+            currentTime.text = mainClock.currentTime.ToString("#.00");
         }
 
         changeCrosshairColor();
@@ -82,7 +81,7 @@ public class CanvasUpdater : MonoBehaviour {
 
     void changeUI()
     {
-        switch (timeScaleControl.i)
+        switch (mainClock.i)
         {
             case 0:
                 timeMultIndicator.text = ("<< REWIND");
@@ -100,7 +99,7 @@ public class CanvasUpdater : MonoBehaviour {
                 timeMultIndicator.text = (">> FAST FORWARD");
                 break;
         }
-        energyAmount = timeScaleControl.energy.energyAmount;
+        energyAmount = PlayerEnergy.energyAmount;
         energySlider.value = energyAmount;
 
         if (inputs.leftClick)

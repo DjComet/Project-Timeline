@@ -8,7 +8,7 @@ public class PuzzleDoorMovement : MonoBehaviour {
 
     public GameObject connectedTo;
     [HideInInspector]
-    public ObjectTimeLine objectTimeLine;
+    public TimeLine timeLine;
 
     public Transform doorRD;
     public Transform doorRU;
@@ -37,7 +37,7 @@ public class PuzzleDoorMovement : MonoBehaviour {
    
     // Use this for initialization
     void Start () {
-        objectTimeLine = gameObject.GetComponent<ObjectTimeLine>();
+        timeLine = gameObject.GetComponent<TimeLine>();
 
         initialRotation = doorLD.rotation;
   
@@ -49,7 +49,7 @@ public class PuzzleDoorMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        scaledDt = objectTimeLine.scaledDT;
+        scaledDt = timeLine.scaledDT;
 
         if(connectedTo != null)
         {
@@ -88,56 +88,56 @@ public class PuzzleDoorMovement : MonoBehaviour {
 
         if (open)
         {
-            counter += scaledDt;
+            counter += Mathf.Abs(scaledDt);
             if(counter >= 0)
             {
-                t1 += scaledDt * openingSpeed;
+                t1 += Mathf.Abs(scaledDt) * openingSpeed;
                 t1 = Mathf.Clamp01(t1);
             }
             
 
             if (counter >= delayBetweenDoors)
             {
-                t2 += scaledDt * openingSpeed;
+                t2 += Mathf.Abs(scaledDt) * openingSpeed;
                 t2 = Mathf.Clamp01(t2);
             }
 
             if (counter >= delayBetweenDoors * 2)
             {
-                t3 += scaledDt * openingSpeed;
+                t3 += Mathf.Abs(scaledDt) * openingSpeed;
                 t3 = Mathf.Clamp01(t3);
             }
 
             if (counter >= delayBetweenDoors * 3)
             {
-                t4 += scaledDt * openingSpeed;
+                t4 += Mathf.Abs(scaledDt) * openingSpeed;
                 t4 = Mathf.Clamp01(t4);
             }
         }
         else
         {
-            counter -= scaledDt;
+            counter -= Mathf.Abs(scaledDt);
             if(counter <= 0)
             {
-                t1 -= scaledDt * openingSpeed;
+                t1 -= Mathf.Abs(scaledDt) * openingSpeed;
                 t1 = Mathf.Clamp01(t1);
             }
 
             if (counter <= delayBetweenDoors)
             {
-                t2 -= scaledDt * openingSpeed;
+                t2 -= Mathf.Abs(scaledDt) * openingSpeed;
                 t2 = Mathf.Clamp01(t2);
             }
 
             if (counter <= delayBetweenDoors * 2)
             {
-                t3 -= scaledDt * openingSpeed;
+                t3 -= Mathf.Abs(scaledDt) * openingSpeed;
                 t3 = Mathf.Clamp01(t3);
             }
 
             if (counter <= delayBetweenDoors * 3)
             {
-                t4 -= scaledDt * openingSpeed;
+                t4 -= Mathf.Abs(scaledDt) * openingSpeed;
                 t4 = Mathf.Clamp01(t4);
             }
         }

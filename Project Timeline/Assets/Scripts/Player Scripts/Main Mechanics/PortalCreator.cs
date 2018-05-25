@@ -8,7 +8,7 @@ public class PortalCreator : MonoBehaviour {
     public GameObject portalPrefA;
     public GameObject portalPrefB;
 
-    private Transform camera;
+    private Transform cam;
     private GameObject portal;
     private GameObject portalA;
     private GameObject portalB;
@@ -16,7 +16,7 @@ public class PortalCreator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        camera = Camera.main.transform;
+        cam = Camera.main.transform;
     }
 	
 	// Update is called once per frame
@@ -26,7 +26,7 @@ public class PortalCreator : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
         {
-            myRay = new Ray(camera.position, camera.forward);
+            myRay = new Ray(cam.position, cam.forward);
 
             if (Physics.Raycast(myRay, out hit))
             {
@@ -40,6 +40,12 @@ public class PortalCreator : MonoBehaviour {
                     {
                         portal.transform.position = new Vector3(hit.point.x, hit.transform.position.y, hit.point.z);
                         portal.transform.rotation = Quaternion.LookRotation(hit.normal, hit.transform.up);
+                    }
+
+                    if (portalB)
+                    {
+                        Destroy(portalA);
+                        Destroy(portalB);
                     }
                 }
             }

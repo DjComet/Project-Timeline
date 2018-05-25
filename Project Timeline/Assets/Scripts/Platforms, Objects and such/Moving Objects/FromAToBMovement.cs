@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FromAToBMovement : MonoBehaviour {
     //A
-    private ObjectTimeLine objectTimeLine;
+    private TimeLine timeLine;
     public GameObject connectedTo;
 
     private Vector3 pointA;
@@ -29,7 +29,7 @@ public class FromAToBMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        objectTimeLine = GetComponent<ObjectTimeLine>();
+        timeLine = GetComponent<TimeLine>();
         pointA = transform.position;
 		if(pointBTransform != null)
         {
@@ -62,7 +62,7 @@ public class FromAToBMovement : MonoBehaviour {
         
         
 
-        timer += objectTimeLine.scaledDT;
+        timer += timeLine.scaledDT;
         timer = Mathf.Clamp(timer, 0, delay);
         if (timer >= delay)
         {
@@ -78,11 +78,11 @@ public class FromAToBMovement : MonoBehaviour {
 
         if (timerReachsDelay && active)
         {
-            t += speed * objectTimeLine.scaledDT;
+            t += speed * Mathf.Abs(timeLine.scaledDT);
         }
         else if (timerReachsDelay && !active)
         {
-            t -= speed * objectTimeLine.scaledDT;
+            t -= speed * Mathf.Abs(timeLine.scaledDT);
         }
         t = Mathf.Clamp01(t);
 
