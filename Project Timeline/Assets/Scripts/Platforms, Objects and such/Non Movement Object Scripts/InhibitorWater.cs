@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InhibitorWater : MonoBehaviour {
     //A
-    MainClock mainClock;
+    Clock mainClock;
     TimeLine timeLine;
     int i = 0;
     public List<GameObject> destroyedGameObjects;
     public bool isTriggered = false;
+
+    
     
 	// Use this for initialization
 	void Start () {
@@ -21,7 +23,7 @@ public class InhibitorWater : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(i);
+        
         
         
 	}

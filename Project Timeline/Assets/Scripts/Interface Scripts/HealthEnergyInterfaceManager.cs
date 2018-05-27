@@ -20,7 +20,7 @@ public class HealthEnergyInterfaceManager : MonoBehaviour {
 
     private GameObject player;
     private PlayerTimeScaleControl timeScaleControl;
-    private MainClock mainClock;
+    private Clock clock;
     public float currentEnergy;
     public float maxEnergy;
     private float timerColor;
@@ -37,6 +37,8 @@ public class HealthEnergyInterfaceManager : MonoBehaviour {
     private Color red = new Color(1.0f, 0.0f, 0.0f,0.5f);
     private Color fullAlpha = new Color(1.0f, 0.0f, 0.0f, 0.0f);
 
+    
+
     [SerializeField]
     private float t;
     private float tSave;
@@ -44,9 +46,10 @@ public class HealthEnergyInterfaceManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        mainClock = MainClock.mainClock;
-        playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");
         player = GameObject.FindGameObjectWithTag("Player");
+        clock = player.GetComponent<PlayerTimeScaleControl>().clock;
+        playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");
+       
 
         for (int i = 0; i < playerCanvas.transform.childCount; i++)
         {
@@ -106,6 +109,7 @@ public class HealthEnergyInterfaceManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        clock = player.GetComponent<PlayerTimeScaleControl>().clock;
         playerHealth = playerValues.health;
 
         if(targetHealth != playerHealth)
@@ -120,7 +124,7 @@ public class HealthEnergyInterfaceManager : MonoBehaviour {
         energyBar.fillAmount = (currentEnergy / 5.0f);
         //energyBar02.fillAmount = (currentEnergy / 5.0f);
 
-        if (mainClock.accelActivated || mainClock.slowActivated || mainClock.rewindActivated || mainClock.pauseActivated)
+        if (clock.accelActivated || clock.slowActivated || clock.rewindActivated || clock.pauseActivated)
         {
             energyBar02.color = red;
         }

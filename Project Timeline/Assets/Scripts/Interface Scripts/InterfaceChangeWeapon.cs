@@ -7,6 +7,9 @@ public class InterfaceChangeWeapon : MonoBehaviour
 {
     private Inputs inputs;
     private MainPlayerController playerController;
+    public GameObject weaponSelectedIcon;
+    public GameObject[] weaponIcons = new GameObject[4];
+    private GameObject playerCanvas;
     public GameObject weaponPanel;
     private GameObject[] weaponPanelOptions = new GameObject [8];
     public Vector3 SelectorPos = new Vector3(0,0,0);
@@ -38,6 +41,43 @@ public class InterfaceChangeWeapon : MonoBehaviour
         inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<Inputs>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerController>();
         weaponPanel = GameObject.Find("WeaponPanel");
+        /*
+        playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");        
+
+        for (int i = 0; i < playerCanvas.transform.childCount; i++)
+        {
+            GameObject child = playerCanvas.transform.GetChild(i).gameObject;
+            if (child.name == "WeaponSelectedIcon")
+            {
+                weaponSelectedIcon = child;
+            }
+            else if(child.name == "WeaponPanel")
+            {
+                weaponPanel = child;
+            }
+        }
+
+        for (int i = 0; i < weaponSelectedIcon.transform.childCount; i++)
+        {
+            //Debug.Log(i);
+            GameObject child = weaponSelectedIcon.transform.GetChild(i).gameObject;
+            if (child.name == "Weapon01")
+            {
+                weaponIcons[i] = child;
+            }
+            else if (child.name == "Weapon02")
+            {
+                weaponIcons[i] = child;
+            }
+            else if (child.name == "Weapon03")
+            {
+                weaponIcons[i] = child;
+            }
+            else if (child.name == "Weapon04")
+            {
+                weaponIcons[i] = child;
+            }
+        }*/
 
         for (int i = 0; i < weaponPanel.transform.childCount; i++)
         {
@@ -76,19 +116,24 @@ public class InterfaceChangeWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        weaponSelected = playerController.weaponSelector;
-        if (counter != 0)
+        if(!PauseMenu.GameIsPaused)
         {
-            weaponPanel.SetActive(true);
-            counter--;
-        }
-        else
-        {
-            weaponPanel.SetActive(false);
-        }
+            weaponSelected = playerController.weaponSelector;
+            if (counter != 0)
+            {
+                weaponPanel.SetActive(true);
+                counter--;
+            }
+            else
+            {
+                weaponPanel.SetActive(false);
+            }
 
-        checkInputs();
-        checkSelectorPos();       
+            checkInputs();
+            checkSelectorPos();
+            changeWeaponIcon();
+        }
+      
         
     }
 
@@ -97,7 +142,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
         
         if(inputs.mouseScroll != 0 || inputs.weap1 || inputs.weap2 || inputs.weap3 || inputs.weap4)
         {
-            counter = 2000.0f;
+            counter = 90.0f;
             t = 0;             
             inTranssition = true;                                
         }
@@ -136,6 +181,21 @@ public class InterfaceChangeWeapon : MonoBehaviour
             inTranssition = false;
             weaponActive = playerController.weaponSelector;
             t = 0;
+        }
+    }
+    
+    void changeWeaponIcon()
+    {
+        for (int i = 0; i < weaponIcons.Length; i++)
+        {
+            if(i == playerController.weaponSelector)
+            {
+                weaponIcons[i].SetActive(true);
+            }
+            else
+            {
+                weaponIcons[i].SetActive(false);
+            }
         }
     }
     /*

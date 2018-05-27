@@ -9,8 +9,9 @@ public class GrabObjects : MonoBehaviour {
 
     public bool grabbed = false;
     public bool hasBeenGrabbed = false;
-    
+    bool hasBeenParented = false;
 
+    Transform previousParent;
     public Collider other;
     
     private Rigidbody otherRb;
@@ -30,17 +31,25 @@ public class GrabObjects : MonoBehaviour {
             if (lookAndInteract.hit.collider.GetComponent<Rigidbody>())
             {
                 grabbed = true;
+                
                 hasBeenGrabbed = false;
                 if (other == null)
                 {
                     other = lookAndInteract.hit.collider;
                 }
+                
             }
         }
 
         if (grabbed)
         {
-            other.transform.parent = transform;
+            if (!hasBeenParented)
+            {
+                previousParent = other.transform.parent;
+                other.transform.parent = transform;
+                hasBeenParented = true;
+            }
+            
 
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.gameObject.layer = 11;
@@ -59,10 +68,11 @@ public class GrabObjects : MonoBehaviour {
 
     public void forceRelease()
     {
+        hasBeenParented = false;
         grabbed = false;
         other.GetComponent<Rigidbody>().isKinematic = false;
         other.gameObject.layer = 0;
-        other.transform.parent = null;
+        other.transform.parent = previousParent;
         other = null;
         hasBeenGrabbed = false;
     }

@@ -11,11 +11,17 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
     public bool active;
     bool activated = false;
     public bool renderThisObjectOnPlay;
+    public Transform parent;
     
 
 	// Use this for initialization
 	void Start () {
         timeLine = GetComponent<TimeLine>();
+        if(transform.parent!= null)
+        {
+            parent = transform.parent;
+        }
+
         if (!renderThisObjectOnPlay)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
@@ -64,7 +70,10 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
 
     GameObject instantiate ()
     {
-        return Instantiate(objectToSpawn, transform.position, transform.rotation);
+        var newObject = Instantiate(objectToSpawn, transform.position, transform.rotation);
+        newObject.transform.parent = parent;
+        return newObject;
+        
     }
 
     void destroyInstantiated(GameObject instantiated)

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CubeTimescaleControl : MonoBehaviour {
 
-    private MainClock mainClock;
+    private Clock mainClock;
     private TimeLine timeLine;
     [HideInInspector]
     public ActivatorBehaviour activator;

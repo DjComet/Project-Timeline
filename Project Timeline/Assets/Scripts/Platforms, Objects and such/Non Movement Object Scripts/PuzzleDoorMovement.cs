@@ -6,7 +6,7 @@ public class PuzzleDoorMovement : MonoBehaviour {
     //A
     float scaledDt;
 
-    public GameObject connectedTo;
+    public List<GameObject> connectedTo;
     [HideInInspector]
     public TimeLine timeLine;
 
@@ -20,9 +20,9 @@ public class PuzzleDoorMovement : MonoBehaviour {
     private Quaternion targetRotationLD;
     private Quaternion targetRotationRU;
     private Quaternion targetRotationRD;
-    
 
-    
+
+    public int trueCounter = 0;
     public float openingSpeed = 5.0f;
 
     public bool open = false;
@@ -51,23 +51,39 @@ public class PuzzleDoorMovement : MonoBehaviour {
 	void Update () {
         scaledDt = timeLine.scaledDT;
 
-        if(connectedTo != null)
+
+        foreach (GameObject go in connectedTo)
         {
-            if (connectedTo.GetComponent<Linker>().active)
+            if (go != null)
+            {
+                if (go.GetComponent<Linker>().active)
+                {
+                    trueCounter++;
+                    Debug.Log("TrueCount: " + trueCounter);
+                }
+
+                trueCounter = Mathf.Clamp(trueCounter, 0, connectedTo.Count);
+            }
+            else
+            {
+                if (debugControl)
+                {
+                    Debug.Log("Missing link on door: " + gameObject.name);
+                    debugControl = false;
+                }
+
+            }
+        }
+            if (trueCounter == connectedTo.Count)
             {
                 open = true;
             }
             else open = false;
-        }
-        else
-        {
-            if(debugControl)
-            {
-                Debug.Log("Missing link on door: " + gameObject.name);
-                debugControl = false;
-            }
+
+            trueCounter = 0;
+        
             
-        }
+        
 
         tCalculations();
 

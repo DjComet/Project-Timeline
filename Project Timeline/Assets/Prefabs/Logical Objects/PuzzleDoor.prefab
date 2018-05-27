@@ -588,12 +588,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf179f378942e9f4bb846e7f79aa5bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  connectedTo: {fileID: 0}
+  connectedTo:
+  - {fileID: 0}
   timeLine: {fileID: 0}
   doorRD: {fileID: 4138395504497164}
   doorRU: {fileID: 4425447170702722}
   doorLD: {fileID: 4673367022310244}
   doorLU: {fileID: 4254781795550216}
+  trueCounter: 0
   openingSpeed: 2
   open: 0
   delayBetweenDoors: 0.08

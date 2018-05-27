@@ -14,7 +14,7 @@ public class CanvasUpdater : MonoBehaviour {
     private Image crosshair;
 
     private GameObject player;
-    private MainClock mainClock;
+    private Clock clock;
     private LookAndInteract lookAndInteract;
 
     private float energyAmount;
@@ -26,7 +26,7 @@ public class CanvasUpdater : MonoBehaviour {
         inputs = player.GetComponent<Inputs>();
         
         lookAndInteract = player.GetComponent<LookAndInteract>();
-        mainClock = MainClock.mainClock;
+        clock = player.GetComponent<PlayerTimeScaleControl>().clock;
 
         for (int i = 0; i < playerCanvas.transform.childCount; i++)
         {
@@ -38,7 +38,7 @@ public class CanvasUpdater : MonoBehaviour {
             else if (child.name == "EnergySlider")
             {
                 energySlider = child.GetComponent<Slider>();
-                if (mainClock != null)
+                if (clock != null)
                 {
                     energySlider.maxValue = PlayerEnergy.maxEnergyAmt;
 
@@ -62,18 +62,18 @@ public class CanvasUpdater : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        clock = player.GetComponent<PlayerTimeScaleControl>().clock;
+        float acceleratedTimeValue = clock.timeValues[4];
+        float normalTimeValue = clock.timeValues[3];
+        float slowedTimeValue = clock.timeValues[2];
+        float pausedTimeValue = clock.timeValues[1];
+        float rewindTimeValue = clock.timeValues[0];
 
-        float acceleratedTimeValue = mainClock.timeValues[4];
-        float normalTimeValue = mainClock.timeValues[3];
-        float slowedTimeValue = mainClock.timeValues[2];
-        float pausedTimeValue = mainClock.timeValues[1];
-        float rewindTimeValue = mainClock.timeValues[0];
 
-
-        if (mainClock != null)
+        if (clock != null)
         {
             changeUI();
-            currentTime.text = mainClock.currentTime.ToString("#.00");
+            currentTime.text = clock.currentTime.ToString("#.00");
         }
 
         changeCrosshairColor();
@@ -81,7 +81,7 @@ public class CanvasUpdater : MonoBehaviour {
 
     void changeUI()
     {
-        switch (mainClock.i)
+        switch (clock.i)
         {
             case 0:
                 timeMultIndicator.text = ("<< REWIND");

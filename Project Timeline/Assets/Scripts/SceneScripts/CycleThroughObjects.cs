@@ -11,7 +11,7 @@ public class CycleThroughObjects : TimeManagerScript {
 	// Use this for initialization
 	void Awake () {
 
-        mainClock = MainClock.mainClock;
+        mainClock = Clock.mainClock;
         GameObject[] goArray = FindObjectsOfType<GameObject>();
         for(int i = 0; i < goArray.Length; i++)
         {
@@ -39,7 +39,7 @@ public class CycleThroughObjects : TimeManagerScript {
             if (go.GetComponent<TimeLine>() != null)
             {
 
-                go.GetComponent<TimeLine>().clock = MainClock.mainClock;
+                go.GetComponent<TimeLine>().clock = Clock.mainClock;
 
                 
             }           

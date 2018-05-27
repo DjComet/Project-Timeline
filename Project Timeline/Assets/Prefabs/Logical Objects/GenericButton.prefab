@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23687518303041344}
   - component: {fileID: 65251049306584544}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Plate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4593de7203fca484daa73d052b84a1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activate: 0
   active: 0
 --- !u!114 &114957393923541516
 MonoBehaviour:
@@ -305,11 +306,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f55c7576995cae44f8071d14dd83000c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeManagerScript: {fileID: 0}
+  clock: {fileID: 0}
+  enableDebug: 0
   actualTarget: 0
   previousTarget: 0
   ownTimeScale: 0
   scaledDT: 0
+  timeEvents: []
+  currentlyCycledTE:
+    repeatable: 0
+    hasRepeatedFwd: 0
+    hasRepeatedBwd: 0
+    time: 0
 --- !u!114 &114999394920804408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -321,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d5f34120da9078468cc8d0d421ec325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colliders: []
   button: {fileID: 4311007406929614}
   buttonBase: {fileID: 4504020536879952}
   pressSpeed: 15

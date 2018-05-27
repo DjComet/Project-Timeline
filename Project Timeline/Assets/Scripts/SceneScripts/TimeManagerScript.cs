@@ -6,7 +6,7 @@ public class TimeManagerScript : MonoBehaviour {
     //A
     protected Inputs inputs;
     protected GameObject player;
-    public MainClock mainClock;
+    public Clock mainClock;
 
     public static TimeManagerScript timeManager;
 
@@ -25,7 +25,7 @@ public class TimeManagerScript : MonoBehaviour {
         
         player = GameObject.FindGameObjectWithTag("Player");
         inputs = player.GetComponent<Inputs>();
-        mainClock = GetComponent<MainClock>();
+        mainClock = GetComponent<Clock>();
         timeValues = mainClock.timeValues;
         i_timeValues = mainClock.i;
     }

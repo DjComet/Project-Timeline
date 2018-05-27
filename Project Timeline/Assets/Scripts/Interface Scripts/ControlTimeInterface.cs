@@ -9,7 +9,7 @@ public class ControlTimeInterface : MonoBehaviour
 
     public float tValue;
     public float lastWheelPos;//0 = normal position, 1 = contrary position
-    private MainClock mainClock;
+    private Clock mainClock;
     private Inputs inputs;
     private GameObject playerCanvas;
     private GameObject timeWheel;
@@ -21,7 +21,7 @@ public class ControlTimeInterface : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mainClock = MainClock.mainClock;
+        mainClock = Clock.mainClock;
         inputs = GetComponentInParent<Inputs>();
 
         playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeLine : MonoBehaviour {
     //A
-    public MainClock clock;
+    public Clock clock;
 
     public bool enableDebug = false;
 
@@ -26,7 +26,7 @@ public class TimeLine : MonoBehaviour {
             gameObject.layer = 9;
         }
 
-        clock = transform.parent.Find("TimeManager").GetComponent<RoomClock>();
+        
     }
 	
 	// Update is called once per frame
@@ -86,7 +86,7 @@ public class TimeLine : MonoBehaviour {
         timeEvents.Add(new TimeEvent(repeatable, time, forward, backwards));
     }
 
-    public void memorizeTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
+    public void rememberTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {
         timeEvents.Add(new TimeEvent(repeatable, clock.currentTime, forward, backwards));
     }
