@@ -48,7 +48,7 @@ public class LookAndInteract : MonoBehaviour {
             {
                 rayHit = true;
                 Debug.DrawRay(ray.origin, ray.direction.normalized * distance, Color.yellow);
-                if (inputs.actionRight)
+                if (inputs.actionRight && !inputs.leftClickPressed)
                 {
                     if (hit.transform.GetComponent<LeverMovement>())
                     {

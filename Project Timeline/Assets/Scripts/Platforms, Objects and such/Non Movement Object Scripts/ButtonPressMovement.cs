@@ -53,7 +53,7 @@ public class ButtonPressMovement : MonoBehaviour {
             if (!timeLine.isEventOverlapping())
             {//Create event where forward = setActive && backwards = setInactive. Repeatable = true.
                 timeLine.createTimeEvent(
-                true,
+                false,
                 delegate
                 {
                     setActive();
@@ -86,7 +86,7 @@ public class ButtonPressMovement : MonoBehaviour {
         {
             
                 timeLine.createTimeEvent(
-                    true,
+                    false,
                     delegate
                     {
                         setInactive();
