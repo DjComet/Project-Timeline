@@ -6,6 +6,7 @@ public class AreaTriggerBehaviour : MonoBehaviour {
 
     private TimeLine timeLine;
     private Linker linker;
+    public bool renderOnPlay = false;
 
     public bool active = false;
     public bool playerInsideTrigger = false;
@@ -15,6 +16,10 @@ public class AreaTriggerBehaviour : MonoBehaviour {
     void Start () {
         timeLine = GetComponent<TimeLine>();
         linker = GetComponent<Linker>();
+        if(!renderOnPlay)
+        {
+            GetComponent<MeshRenderer>().enabled = false;
+        }
 	}
 	
 	// Update is called once per frame

@@ -31,7 +31,8 @@ public class InhibitorWater : MonoBehaviour {
     {
         if(other.CompareTag("Player"))
         {
-            mainClock.resetToNormalTime = true;
+            if(other.GetComponent<PlayerTimeScaleControl>().hasModifiedTime)
+                mainClock.resetToNormalTime = true;
         }
         else if(other.CompareTag("RayInteract")) //add "&& ohter.GetComponent<Rigidbody>()" to check if it's actually a movable object and not a lever or smth like that if that poses a problem in the future.
         {

@@ -44,6 +44,12 @@ public class PortalCreator : MonoBehaviour {
 
                     if (portalB)
                     {
+                        if(hit.collider.transform.parent.tag == "CopyRoom"){
+                            hit.collider.transform.parent.tag = "OriginalRoom";
+                            GameObject.FindGameObjectWithTag("OriginalRoom").tag = "CopyRoom";
+                            Destroy(GameObject.FindGameObjectWithTag("OriginalRoomChange"));
+                            GameObject.FindGameObjectWithTag("CopyRoomChange").tag = "OriginalRoomChange";
+                        }
                         Destroy(portalA);
                         Destroy(portalB);
                     }

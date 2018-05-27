@@ -145,5 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a327d497f726c1498a874aa399626f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  renderOnPlay: 0
+  active: 0
   playerInsideTrigger: 0

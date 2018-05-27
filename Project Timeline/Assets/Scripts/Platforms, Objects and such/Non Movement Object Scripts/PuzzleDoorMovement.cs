@@ -58,8 +58,7 @@ public class PuzzleDoorMovement : MonoBehaviour {
             {
                 if (go.GetComponent<Linker>().active)
                 {
-                    trueCounter++;
-                    Debug.Log("TrueCount: " + trueCounter);
+                    trueCounter++;                   
                 }
 
                 trueCounter = Mathf.Clamp(trueCounter, 0, connectedTo.Count);

@@ -40,11 +40,13 @@ public class PlayerTimeScaleControl : MonoBehaviour {
     public float pausedTimeValue;
     public float rewindTimeValue;
 
+    
+
     // Use this for initialization
     void Start () {
         
         inputs = gameObject.GetComponent<Inputs>();
-        clock = Clock.mainClock;
+        
 
         PlayerEnergy.energyAmount = PlayerEnergy.maxEnergyAmt;
         
@@ -67,21 +69,81 @@ public class PlayerTimeScaleControl : MonoBehaviour {
         //Input effects
         if (inputs.actionRight && inputs.rightClick)//ACCEL
         {
-            clock.goAccel();            
+            clock.goAccel();
+            hasModifiedTime = true;
+            if (clock.accelActivated && clock.i == 4)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.accelActivated = false;
+            }
+            else if (clock.i == 4)
+            {
+                clock.accelActivated = true;
+                clock.slowActivated = false;
+                clock.pauseActivated = false;
+                clock.rewindActivated = false;
+            }
         } 
         else if(inputs.actionRight && inputs.leftClick)//SLOW
         {
             clock.goSlow();
+            hasModifiedTime = true;
+            if (clock.slowActivated && clock.i == 2)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.slowActivated = false;
+            }
+            else if (clock.i == 2)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = true;
+                clock.pauseActivated = false;
+                clock.rewindActivated = false;
+            }
         }
 
         if (inputs.actionLeft && inputs.rightClick && !trigger)//REWIND
         {
-            clock.goRewind();    
+            clock.goRewind();
+            hasModifiedTime = true;
+            if (clock.rewindActivated && clock.i == 0)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.rewindActivated = false;
+            }
+            else if (clock.i == 0)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = false;
+                clock.pauseActivated = false;
+                clock.rewindActivated = true;
+                clock.notSet = true;
+            }
         }
         else if (inputs.actionLeft && inputs.leftClick)//PAUSE
         {
             clock.goPause();
-            Debug.Log("Pause click");
+            hasModifiedTime = true;
+            if (clock.pauseActivated && clock.i == 1)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.pauseActivated = false;
+            }
+            else if (clock.i == 1)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = false;
+                clock.pauseActivated = true;
+                clock.rewindActivated = false;
+            }
         }
         
         //Stuff to be able to rewind faster and faster if the rewind input stays pressed.
@@ -129,6 +191,7 @@ public class PlayerTimeScaleControl : MonoBehaviour {
         if(PlayerEnergy.energyAmount <= PlayerEnergy.minEnergyAmt)
         {
             clock.resetToNormal();
+            hasModifiedTime = false;
         }
     }
     

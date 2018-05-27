@@ -50,7 +50,7 @@ public class GrabObjects : MonoBehaviour {
                 hasBeenParented = true;
             }
             
-
+             
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.gameObject.layer = 11;
 

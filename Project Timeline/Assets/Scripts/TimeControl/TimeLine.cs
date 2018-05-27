@@ -42,26 +42,37 @@ public class TimeLine : MonoBehaviour {
 	}
 
     #region Time state related bool functions
+    
     public bool OnPause()
     {
-        return (clock.targetValue == clock.pausedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.pausedTimeValue ? true : false); }
+        else return false;
     }
     public bool OnSlow()
     {
-        return (clock.targetValue == clock.slowedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.slowedTimeValue ? true : false); }
+        else return false;
     }
     public bool OnRewind()
     {
-        return (clock.targetValue == clock.rewindTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.rewindTimeValue ? true : false); }
+        else return false;
     }
     public bool OnNormal()
     {
-        return (clock.targetValue == clock.normalTimeValue ? true : false);      
+        if (clock != null)
+        { return (clock.targetValue == clock.normalTimeValue ? true : false); }
+        else return false;
     }
 
     public bool OnAccel()
     {
-        return (clock.targetValue == clock.acceleratedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.acceleratedTimeValue ? true : false); }
+        else return false;
     }
     #endregion
 

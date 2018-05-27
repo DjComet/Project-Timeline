@@ -160,86 +160,24 @@ public class Clock : MonoBehaviour {
     {
         previousTargetValue = targetValue;
         i = 4;
-
-        if (accelActivated && i == 4)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            accelActivated = false;
-        }
-        else if (i == 4)
-        {
-            accelActivated = true;
-            slowActivated = false;
-            pauseActivated = false;
-            rewindActivated = false;
-        }
-
     }
 
     public void goSlow()
     {
         previousTargetValue = targetValue;
         i = 2;
-
-        if (slowActivated && i == 2)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            slowActivated = false;
-        }
-        else if (i == 2)
-        {
-            accelActivated = false;
-            slowActivated = true;
-            pauseActivated = false;
-            rewindActivated = false;
-        }
     }
 
     public void goPause()
     {
         previousTargetValue = targetValue;
         i = 1;
-
-        if (pauseActivated && i == 1)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            pauseActivated = false;
-        }
-        else if (i == 1)
-        {
-            accelActivated = false;
-            slowActivated = false;
-            pauseActivated = true;
-            rewindActivated = false;
-        }
     }
 
     public void goRewind()
     {
         previousTargetValue = targetValue;
         i = 0;
-
-        if (rewindActivated && i == 0)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            rewindActivated = false;
-        }
-        else if (i == 0)
-        {
-            accelActivated = false;
-            slowActivated = false;
-            pauseActivated = false;
-            rewindActivated = true;
-            notSet = true;
-        }
     }
 
     public void resetToNormal()
