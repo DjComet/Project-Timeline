@@ -6,7 +6,7 @@ public class LeverMovement : MonoBehaviour {
     //A
     private TimeLine timeLine;
     private Linker linker;
-    private TimeManagerScript timeManager;
+    
     public Transform lever;
     public bool enableDebug;
 
@@ -28,7 +28,7 @@ public class LeverMovement : MonoBehaviour {
 
         timeLine = GetComponent<TimeLine>();
         linker = GetComponent<Linker>();
-        timeManager = TimeManagerScript.timeManager;
+        
 
         initialRot = lever.localRotation;
         targetRot = Quaternion.Euler(targetAngle, 0, 0);

@@ -7,9 +7,11 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
     TimeLine timeLine;
     public GameObject objectToSpawn;
     public GameObject connectedTo;
+    public List<GameObject> instantiatedGameObjects;
     public bool active;
     bool activated = false;
     public bool renderThisObjectOnPlay;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -33,8 +35,23 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
 
         if(active && !activated)
         {
-            Instantiate(objectToSpawn, transform.position, transform.rotation);
-            
+            instantiatedGameObjects.Add(instantiate()); //If we insert this function inside the timeEvent creation, the object will be spawned twice if we have gone backwards in time and then forwards through this timeEvent.
+
+            timeLine.createTimeEvent(
+            true,
+            delegate {
+                
+            },
+            delegate (){
+                if(instantiatedGameObjects.Count>0)
+                {
+                    destroyInstantiated(instantiatedGameObjects[0]);
+                    instantiatedGameObjects.RemoveAt(0);
+                }
+                
+            });
+
+
             activated = true;
         }
         else if(!active)
@@ -44,4 +61,15 @@ public class SpawnerObjectBehaviour : MonoBehaviour {
         
 
 	}
+
+    GameObject instantiate ()
+    {
+        return Instantiate(objectToSpawn, transform.position, transform.rotation);
+    }
+
+    void destroyInstantiated(GameObject instantiated)
+    {
+        GameObject toDestroy = instantiated;
+        Destroy(toDestroy);
+    }
 }

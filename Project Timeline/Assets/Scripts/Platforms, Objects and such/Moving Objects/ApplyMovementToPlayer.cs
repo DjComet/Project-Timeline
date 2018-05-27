@@ -61,6 +61,8 @@ public class ApplyMovementToPlayer : MonoBehaviour {
             if(otherGo.transform.parent)
             {
                 otherGo.transform.parent = null;
+                otherGo.transform.localScale = Vector3.one;//Avoid weird deformations to the ex-parented object, consequence of the change in localScale from parenting that object to another object with a scale != 1
+                //could be done better by storing scale before making it a child and then reapplying that scale here. But this will do for now.
             }
 
             otherGo = null;

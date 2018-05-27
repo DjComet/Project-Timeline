@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MainClock : MonoBehaviour {
-    float dt;
+    protected float dt;
 
     public bool enableDebug = false;
     public bool resetToNormalTime = false;
@@ -13,8 +13,8 @@ public class MainClock : MonoBehaviour {
     public float targetValue;
     public float ownTimeScale = 1.0f;
 
-    private float maxTimeMultiplierValue = 2.0f;//this should be equals to the value in the biggest position on the timeValues array (i = 4)
-    private float minTimeMultiplierValue = -1.0f;//same as above but with i = 0;
+    protected float maxTimeMultiplierValue = 2.0f;//this should be equals to the value in the biggest position on the timeValues array (i = 4)
+    protected float minTimeMultiplierValue = -1.0f;//same as above but with i = 0;
     public float previousTargetValue;
     public float increment = 0.5f;
     public float minValueToRewind = -1.0f;
@@ -24,7 +24,7 @@ public class MainClock : MonoBehaviour {
     public int i = 3; //3 is the position of the value 1, which implies normal time flow (ownTimeScale is multiplied by 1).
 
     public bool notSet = true;
-    private bool trigger = false;
+    protected bool trigger = false;
     bool canExtend = true;
 
     //************************************ TIME SELECTOR SLIDER **************************************************************************************************************
@@ -63,23 +63,19 @@ public class MainClock : MonoBehaviour {
 	void Update () {
         dt = Time.deltaTime;
 
+        clockCore();
+
+    }
+
+    protected void clockCore()
+    {
         acceleratedTimeValue = timeValues[4];
         normalTimeValue = timeValues[3];
         slowedTimeValue = timeValues[2];
         pausedTimeValue = timeValues[1];
         rewindTimeValue = timeValues[0];
 
-        //Stuff to be able to rewind faster and faster if the rewind input stays pressed.
-
-        if (keepIncreasingValue && trigger)//Must do it better so that it can't be activated
-        {
-            timeValues[0] += -increment * dt;
-            timeValues[0] = Mathf.Clamp(timeValues[0], maxValueToRewind, minValueToRewind);
-        }
-        else if (!keepIncreasingValue)
-        {
-            trigger = false;
-        }
+        keepRewind();
 
         i = Mathf.Clamp(i, 0, 4);
         targetValue = timeValues[i];
@@ -96,11 +92,25 @@ public class MainClock : MonoBehaviour {
         currentTime += scaledDt;
 
         currentTime = Mathf.Clamp(currentTime, 0, Mathf.Infinity);
+    }
+
+    protected void keepRewind()
+    {
+        //Stuff to be able to rewind faster and faster if the rewind input stays pressed.
+
+        if (keepIncreasingValue && trigger)//Must do it better so that it can't be activated
+        {
+            timeValues[0] += -increment * dt;
+            timeValues[0] = Mathf.Clamp(timeValues[0], maxValueToRewind, minValueToRewind);
+        }
+        else if (!keepIncreasingValue)
+        {
+            trigger = false;
+        }
 
     }
 
-
-    void ownTimescaleSlide()
+    protected void ownTimescaleSlide()
     {
         if (Mathf.Sign(targetValue - previousTargetValue) != Mathf.Sign(maxSlidingSpeed))//reverse maxSlidingSpeed sign if the direction has changed
             maxSlidingSpeed *= -1;

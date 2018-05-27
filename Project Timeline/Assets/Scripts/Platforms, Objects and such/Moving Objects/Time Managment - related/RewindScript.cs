@@ -38,7 +38,7 @@ public class RewindScript : RigidbodySettings {
     public List<PointInTime> pointsInTime;
     private float currentTime;
     public bool isRewinding = false;
-    public float recordTime = 10f;
+    public static float recordTime = 10f;
     public bool hasAppliedStop = true;
     public float counter = 0;
     private float t = 0;
@@ -110,9 +110,12 @@ public class RewindScript : RigidbodySettings {
         if (counter >= recordInterval)
         { 
             pointsInTime.Insert(0, new PointInTime(transform, rb.velocity, rb.angularVelocity, currentTime, number));
-            if (enableDebug) Debug.Log("PointInTimeInserted: pos " + pointsInTime[0].position + " vel " + pointsInTime[0].velocity + " ang vel " + pointsInTime[0].angularVelocity + " timeWhenRecorded " + pointsInTime[0].timeWhenRecorded + " number " + pointsInTime[0].number);
-
-            if (currentTime - pointsInTime[pointsInTime.Count - 1].timeWhenRecorded > recordTime)//If the time elapsed between NOW and the last element on the list is greater than 5 seconds, delete it.
+            if (enableDebug)
+            {
+                Debug.Log("PointInTimeInserted: pos " + pointsInTime[0].position + " vel " + pointsInTime[0].velocity + " ang vel " + pointsInTime[0].angularVelocity + " timeWhenRecorded " + pointsInTime[0].timeWhenRecorded + " number " + pointsInTime[0].number);
+                Debug.Log("Current time: " + currentTime + ", currentTime - time of oldest point in list: " + (currentTime - pointsInTime[pointsInTime.Count - 1].timeWhenRecorded) + ", recordTime: " + recordTime);
+            }
+            if (currentTime - pointsInTime[pointsInTime.Count - 1].timeWhenRecorded > recordTime)//If the time elapsed between NOW and the last element on the list is greater than recordInterval seconds, delete it.
             {
                 if (enableDebug) Debug.Log("PointRemoved with time: " + pointsInTime[pointsInTime.Count - 1].timeWhenRecorded);
                 pointsInTime.RemoveAt(pointsInTime.Count - 1);

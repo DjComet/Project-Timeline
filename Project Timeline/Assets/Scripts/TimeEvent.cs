@@ -16,8 +16,9 @@ public class TimeEvent {
 
     public delegate void Forward();
     public delegate void Backwards();
-    public delegate T Forward<T,G>( G input);
-    public delegate T Backwards<T,G>(G input);
+    public delegate T ForwardFunc<T,G>( G input);
+    public delegate T BackwardsFunc<T,G>(G input);
+    
     public Forward forward;    //Function to play when Time event is active and timeline is moving forward.
     public Backwards backwards;//Function to play when Time event is active and timeline is moving backwards.
    
@@ -34,7 +35,17 @@ public class TimeEvent {
         
     }
 
-    
-    
+    /*
+    public TimeEvent(bool repeatable, float time, ForwardFunc<> forward, BackwardsFunc<> backwards)
+    {
+        this.repeatable = repeatable;
+        this.time = time;
+
+        this.forward = forward;
+        this.backwards = backwards;
+
+    }*/ //hmmm
+
+
 
 }

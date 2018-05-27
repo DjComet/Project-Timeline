@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4045826978978396}
   - component: {fileID: 33558279460211976}
   - component: {fileID: 23529929510703218}
+  - component: {fileID: 65884822381757810}
+  - component: {fileID: 114552253841637148}
   m_Layer: 0
   m_Name: TimeSphereContainer
   m_TagString: Untagged
@@ -57,7 +59,7 @@ GameObject:
   - component: {fileID: 23031323861005290}
   - component: {fileID: 114522793864319746}
   - component: {fileID: 114352809917339610}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TimeSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +83,7 @@ GameObject:
   - component: {fileID: 114058207500043224}
   - component: {fileID: 114016598897987264}
   - component: {fileID: 114728447296766122}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: TimeSphereCube
   m_TagString: RayInteract
   m_Icon: {fileID: 0}
@@ -135,7 +137,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1921312314113370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -25.75, y: 19.838, z: 1}
+  m_LocalPosition: {x: 12.25, y: 8.75, z: 27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4045826978978396}
@@ -252,6 +254,18 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.08, y: 1.08, z: 1.08}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65884822381757810
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014065073614170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108420937394261514
 Light:
@@ -426,6 +440,22 @@ MonoBehaviour:
   pingPongX: 1
   pingPongY: 1
   pingPongZ: 1
+--- !u!114 &114552253841637148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1014065073614170}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 478480eeb274cca45a37c52c30c6a206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherGo: {fileID: 0}
+  maxSpeedDifference: 20
+  speedDifference: {x: 0, y: 0, z: 0}
+  speedMagnitude: 0
+  speedVector: {x: 0, y: 0, z: 0}
 --- !u!114 &114574303969441898
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -440,7 +470,6 @@ MonoBehaviour:
   inhibited: 0
   enableDebug: 0
   isRewinding: 0
-  recordTime: 5
   hasAppliedStop: 1
   counter: 0
 --- !u!114 &114728447296766122

@@ -101,7 +101,7 @@ public class CanvasUpdater : MonoBehaviour {
         }
         energyAmount = PlayerEnergy.energyAmount;
         energySlider.value = energyAmount;
-
+       
         if (inputs.leftClick)
         {
             mouseClickHint.text = ("Q: ||         E: |>\nPause      Slow  ");
@@ -111,7 +111,7 @@ public class CanvasUpdater : MonoBehaviour {
             mouseClickHint.text = ("Q: <<         E: >>\n    Rewind    Accelerate  ");
         }
         else mouseClickHint.text = ("");
-
+        
     }
 
     void changeCrosshairColor()

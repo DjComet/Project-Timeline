@@ -41,12 +41,14 @@ public class GrabObjects : MonoBehaviour {
         if (grabbed)
         {
             other.transform.parent = transform;
+
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.gameObject.layer = 11;
+
             stayFacingUpwards();
             lerpTowardsCenter();
            
-            if (inputs.actionRight && hasBeenGrabbed)
+            if ((inputs.actionRight && hasBeenGrabbed) || !other.gameObject.activeSelf)
             {
                 forceRelease();
             }

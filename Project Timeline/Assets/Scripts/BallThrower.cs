@@ -8,17 +8,30 @@ public class BallThrower : MonoBehaviour{
     public GameObject ballPrefab;
     public float delta = 0.04f;
     public int weaponActive;
+    private GameObject player;
 
     private MainPlayerController playerController;
     public Transform trayectoria;
     Vector3 spawnPos;
     Vector3 initPosTrayectory;
 
+    bool debugged = false;
     // Use this for initialization
     void Start()
     {
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerController>();
-        
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        for (int i = 0; i < player.transform.childCount; i++)
+        {
+            Transform child = player.transform.GetChild(i).transform;
+            if (child.name == "Trayectory")
+            {
+                trayectoria = child;
+            } 
+
+        }
+
     }
 
     // Update is called once per frame
@@ -26,22 +39,34 @@ public class BallThrower : MonoBehaviour{
     {
         weaponActive = playerController.weaponSelector;
         spawnPos = 0.5f * Vector3.down + transform.position + transform.forward;
-        if (Input.GetMouseButton(2) && weaponActive == 2)
+
+        if(trayectoria!=null)
         {
-            trayectoria.transform.gameObject.SetActive(true);
-            ShowTrayectory();
+            if (Input.GetMouseButton(2) && weaponActive == 2)
+            {
+                trayectoria.transform.gameObject.SetActive(true);
+                ShowTrajectory();
+            }
+            else
+            {
+                trayectoria.transform.gameObject.SetActive(false);
+            }
+
+            if (Input.GetMouseButtonUp(2) && weaponActive == 2)
+            {
+                ThrowGrenade();
+            }
+
+            initPosTrayectory = transform.position;
         }
         else
         {
-            trayectoria.transform.gameObject.SetActive(false);
+            if (!debugged)
+            {
+                Debug.Log("La variable 'trayectoria' no ha sido asignada");
+                debugged = true;
+            }
         }
-
-        if (Input.GetMouseButtonUp(2) && weaponActive == 2)
-        {
-            ThrowGrenade();
-        }
-
-        initPosTrayectory = transform.position;
 
         
     }
@@ -54,7 +79,7 @@ public class BallThrower : MonoBehaviour{
 
     }
 
-    void ShowTrayectory()
+    void ShowTrajectory()
     {
         for (int i = 0; i < trayectoria.childCount; i++)
         {

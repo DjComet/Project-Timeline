@@ -17,6 +17,7 @@ public class TimeLine : MonoBehaviour {
 
     [HideInInspector]
     public TimeEvent currentlyCycledTE;
+    private float maxRewindTime = RewindScript.recordTime;
 
     // Use this for initialization
     void Start () {
@@ -67,26 +68,31 @@ public class TimeLine : MonoBehaviour {
     #region TimeEvent code and functions
     public void createTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {   
-        timeEvents.Add(new TimeEvent(true, clock.currentTime, forward, backwards));
+        timeEvents.Add(new TimeEvent(repeatable, clock.currentTime, forward, backwards));
     }
+
+    /*public void createTimeEvent(bool repeatable, TimeEvent.ForwardFunc<GameObject,GameObject> forward, TimeEvent.Backwards backwards)
+    {
+        timeEvents.Add(new TimeEvent(repeatable, clock.currentTime, forward, backwards));
+    }*/
 
     public void planTimeEvent(bool repeatable, float time, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {
-        timeEvents.Add(new TimeEvent(true, clock.currentTime + time, forward, backwards));
+        timeEvents.Add(new TimeEvent(repeatable, clock.currentTime + time, forward, backwards));
     }
 
     public void scheduleTimeEvent(bool repeatable, float time, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {
-        timeEvents.Add(new TimeEvent(true, time, forward, backwards));
+        timeEvents.Add(new TimeEvent(repeatable, time, forward, backwards));
     }
 
     public void memorizeTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {
-        timeEvents.Add(new TimeEvent(true, clock.currentTime, forward, backwards));
+        timeEvents.Add(new TimeEvent(repeatable, clock.currentTime, forward, backwards));
     }
 
-    void cycle()
-    {
+    void cycle()//This cycles through all the time events in this gameObject, and activates the forwards or backwards functions depending on the time of the event relative to the current time.               
+    {           //It also erases events when their time is out of the scope of the rewind record time.
         for (int i = timeEvents.Count - 1; i >= 0; i--)
         {
             currentlyCycledTE = currentCycledTimeEvent(timeEvents[i]);
@@ -97,12 +103,13 @@ public class TimeLine : MonoBehaviour {
                 if (timeEvents[i].backwards != null)
                 {
                     timeEvents[i].backwards();//Do the backwards function
+                    
                     timeEvents[i].hasRepeatedFwd = false;
                 }
                     timeEvents[i].hasRepeatedBwd = true;
 
                 if (!timeEvents[i].repeatable)
-                {
+                {             
                     erase(i);
                 }
             }
@@ -114,6 +121,11 @@ public class TimeLine : MonoBehaviour {
                 timeEvents[i].forward();
                 timeEvents[i].hasRepeatedBwd = false;
                 timeEvents[i].hasRepeatedFwd = true;
+            }
+
+            if(clock.currentTime - timeEvents[i].time > maxRewindTime)
+            {
+                erase(i);
             }
         }
     }
@@ -132,6 +144,7 @@ public class TimeLine : MonoBehaviour {
     #region ERASE TIME EVENT
     void erase(int i)
     {
+        if (enableDebug) Debug.Log(i + " timeEvent removed");
         timeEvents.RemoveAt(i);
     }
 
