@@ -111,7 +111,7 @@ public class ActivatorBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.name == "TimeSphereCube")
+        if(other.tag == "RayInteract" && other.GetComponent<CubeTimescaleControl>())
         {
             cube = other.transform;
             //cube.parent = transform;
@@ -127,7 +127,7 @@ public class ActivatorBehaviour : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.name == "TimeSphereCube")
+        if (other.tag == "RayInteract" && other.GetComponent<CubeTimescaleControl>())
         {
             if(active)
             {

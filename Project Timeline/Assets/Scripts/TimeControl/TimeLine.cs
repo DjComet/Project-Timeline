@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TimeLine : MonoBehaviour {
     //A
-    public MainClock clock;
+    public Clock clock;
 
     public bool enableDebug = false;
 
@@ -26,7 +26,7 @@ public class TimeLine : MonoBehaviour {
             gameObject.layer = 9;
         }
 
-        clock = transform.parent.Find("TimeManager").GetComponent<RoomClock>();
+        
     }
 	
 	// Update is called once per frame
@@ -42,26 +42,37 @@ public class TimeLine : MonoBehaviour {
 	}
 
     #region Time state related bool functions
+    
     public bool OnPause()
     {
-        return (clock.targetValue == clock.pausedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.pausedTimeValue ? true : false); }
+        else return false;
     }
     public bool OnSlow()
     {
-        return (clock.targetValue == clock.slowedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.slowedTimeValue ? true : false); }
+        else return false;
     }
     public bool OnRewind()
     {
-        return (clock.targetValue == clock.rewindTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.rewindTimeValue ? true : false); }
+        else return false;
     }
     public bool OnNormal()
     {
-        return (clock.targetValue == clock.normalTimeValue ? true : false);      
+        if (clock != null)
+        { return (clock.targetValue == clock.normalTimeValue ? true : false); }
+        else return false;
     }
 
     public bool OnAccel()
     {
-        return (clock.targetValue == clock.acceleratedTimeValue ? true : false);
+        if (clock != null)
+        { return (clock.targetValue == clock.acceleratedTimeValue ? true : false); }
+        else return false;
     }
     #endregion
 
@@ -86,7 +97,7 @@ public class TimeLine : MonoBehaviour {
         timeEvents.Add(new TimeEvent(repeatable, time, forward, backwards));
     }
 
-    public void memorizeTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
+    public void rememberTimeEvent(bool repeatable, TimeEvent.Forward forward, TimeEvent.Backwards backwards)
     {
         timeEvents.Add(new TimeEvent(repeatable, clock.currentTime, forward, backwards));
     }

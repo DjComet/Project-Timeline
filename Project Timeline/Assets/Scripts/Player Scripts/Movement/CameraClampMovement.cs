@@ -54,27 +54,31 @@ public class CameraClampMovement : MonoBehaviour{
 
     void LateUpdate()
     { 
-        yaw = transform.localEulerAngles.y;
-        //pitch = transform.eulerAngles.x; //Pasan cosas to raras con esto. Al llegar a x=0, x retorna a 80 automaticamente.
+        if(!PauseMenu.GameIsPaused)
+        {
+            yaw = transform.localEulerAngles.y;
+            //pitch = transform.eulerAngles.x; //Pasan cosas to raras con esto. Al llegar a x=0, x retorna a 80 automaticamente.
 
 
-        transform.position = player.transform.position + player.transform.up * distanceFromCenterOfPlayer;
-        //Gets rotational input from the mouse
-        yaw += Input.GetAxis("MouseX") * sensitivityYaw * invYaw;
-        pitch += Input.GetAxis("MouseY") * sensitivityPitch * invPitch;
+            transform.position = player.transform.position + player.transform.up * distanceFromCenterOfPlayer;
+            //Gets rotational input from the mouse
+            yaw += Input.GetAxis("MouseX") * sensitivityYaw * invYaw;
+            pitch += Input.GetAxis("MouseY") * sensitivityPitch * invPitch;
 
-        //Clamp rotation angles
-        pitch = Mathf.Clamp(pitch, minimumY, maximumY);
-        //yaw = ClampAngle(yaw, minimumX, maximumX);
-        //pitch = ClampAngle(pitch, minimumY, maximumY);
+            //Clamp rotation angles
+            pitch = Mathf.Clamp(pitch, minimumY, maximumY);
+            //yaw = ClampAngle(yaw, minimumX, maximumX);
+            //pitch = ClampAngle(pitch, minimumY, maximumY);
 
-        //Create rotations around axis
-        //Quaternion leftQuaternion = Quaternion.AngleAxis(pitch, Vector3.left);
-        //Quaternion upQuaternion = Quaternion.AngleAxis(yaw, Vector3.up);
+            //Create rotations around axis
+            //Quaternion leftQuaternion = Quaternion.AngleAxis(pitch, Vector3.left);
+            //Quaternion upQuaternion = Quaternion.AngleAxis(yaw, Vector3.up);
 
-        //Rotate
-        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
-        player.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
+            //Rotate
+            transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+            player.transform.forward = new Vector3(transform.forward.x, 0, transform.forward.z);
+        }
+
     }
 
     /*public static float ClampAngle(float angle, float min, float max)//Works for quaternions

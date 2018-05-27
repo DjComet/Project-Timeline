@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainClock : MonoBehaviour {
+public class Clock : MonoBehaviour {
     protected float dt;
 
     public bool enableDebug = false;
     public bool resetToNormalTime = false;
 
     //************************************ TIME TARGETS, ARRAY AND CONTROL ***************************************************************************************************
-    public float[] timeValues;
+    public float[] timeValues = new float[] { -1f, 0f, 0.2f, 1f, 2f};
+
     public float targetValue;
     public float ownTimeScale = 1.0f;
 
@@ -29,7 +30,7 @@ public class MainClock : MonoBehaviour {
 
     //************************************ TIME SELECTOR SLIDER **************************************************************************************************************
     public float maxSlidingSpeed = 1f;
-    public float slidingAcceleration = 0.07f;
+    public float slidingAcceleration = 0.09f;
     public float slidingSpeed = 0.0f;
 
     //********************************** TIME ARRAY VALUES **********************************************
@@ -42,7 +43,7 @@ public class MainClock : MonoBehaviour {
 
     //Important stuff to access from outside
 
-    public static MainClock mainClock;
+    public static Clock mainClock;
 
     public float currentTime = 0;
     public float scaledDt;
@@ -53,7 +54,8 @@ public class MainClock : MonoBehaviour {
     public bool rewindActivated = false;
 
     // Use this for initialization
-    void Awake () {
+    void Start () {
+        timeValues = new float[] { -1f, 0f, 0.2f, 1f, 2f };
         mainClock = this;
         i = 3;//Normal Time Target Value
         targetValue = timeValues[i];
@@ -158,86 +160,24 @@ public class MainClock : MonoBehaviour {
     {
         previousTargetValue = targetValue;
         i = 4;
-
-        if (accelActivated && i == 4)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            accelActivated = false;
-        }
-        else if (i == 4)
-        {
-            accelActivated = true;
-            slowActivated = false;
-            pauseActivated = false;
-            rewindActivated = false;
-        }
-
     }
 
     public void goSlow()
     {
         previousTargetValue = targetValue;
         i = 2;
-
-        if (slowActivated && i == 2)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            slowActivated = false;
-        }
-        else if (i == 2)
-        {
-            accelActivated = false;
-            slowActivated = true;
-            pauseActivated = false;
-            rewindActivated = false;
-        }
     }
 
     public void goPause()
     {
         previousTargetValue = targetValue;
         i = 1;
-
-        if (pauseActivated && mainClock.i == 1)
-        {
-            //Return to normal time if action is pressed again while active
-            mainClock.resetToNormal();
-
-            pauseActivated = false;
-        }
-        else if (mainClock.i == 1)
-        {
-            accelActivated = false;
-            slowActivated = false;
-            pauseActivated = true;
-            rewindActivated = false;
-        }
     }
 
     public void goRewind()
     {
         previousTargetValue = targetValue;
         i = 0;
-
-        if (rewindActivated && i == 0)
-        {
-            //Return to normal time if action is pressed again while active
-            resetToNormal();
-
-            rewindActivated = false;
-        }
-        else if (i == 0)
-        {
-            accelActivated = false;
-            slowActivated = false;
-            pauseActivated = false;
-            rewindActivated = true;
-            notSet = true;
-        }
     }
 
     public void resetToNormal()

@@ -23,8 +23,9 @@ public static class PlayerEnergy {
 public class PlayerTimeScaleControl : MonoBehaviour {
     float dt;
     private Inputs inputs;
-    private MainClock mainClock;
+    public Clock clock;
 
+    public bool hasModifiedTime = false; //Useful to know if this object has modified time, or it was some other object.
     public bool enableDebug = false;
 
     //************************************ TIME TARGET BOOLEANS **************************************************************************************************************
@@ -39,11 +40,13 @@ public class PlayerTimeScaleControl : MonoBehaviour {
     public float pausedTimeValue;
     public float rewindTimeValue;
 
+    
+
     // Use this for initialization
     void Start () {
         
         inputs = gameObject.GetComponent<Inputs>();
-        mainClock = MainClock.mainClock;
+        
 
         PlayerEnergy.energyAmount = PlayerEnergy.maxEnergyAmt;
         
@@ -53,11 +56,11 @@ public class PlayerTimeScaleControl : MonoBehaviour {
 	void Update () {
         dt = Time.deltaTime;
 
-        acceleratedTimeValue = mainClock.timeValues[4];
-        normalTimeValue = mainClock.timeValues[3];
-        slowedTimeValue = mainClock.timeValues[2];
-        pausedTimeValue = mainClock.timeValues[1];
-        rewindTimeValue = mainClock.timeValues[0];
+        acceleratedTimeValue = clock.timeValues[4];
+        normalTimeValue = clock.timeValues[3];
+        slowedTimeValue = clock.timeValues[2];
+        pausedTimeValue = clock.timeValues[1];
+        rewindTimeValue = clock.timeValues[0];
 
        
 
@@ -66,31 +69,92 @@ public class PlayerTimeScaleControl : MonoBehaviour {
         //Input effects
         if (inputs.actionRight && inputs.rightClick)//ACCEL
         {
-            mainClock.goAccel();
+            clock.goAccel();
+            hasModifiedTime = true;
+            if (clock.accelActivated && clock.i == 4)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.accelActivated = false;
+            }
+            else if (clock.i == 4)
+            {
+                clock.accelActivated = true;
+                clock.slowActivated = false;
+                clock.pauseActivated = false;
+                clock.rewindActivated = false;
+            }
         } 
         else if(inputs.actionRight && inputs.leftClick)//SLOW
         {
-            mainClock.goSlow();
+            clock.goSlow();
+            hasModifiedTime = true;
+            if (clock.slowActivated && clock.i == 2)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.slowActivated = false;
+            }
+            else if (clock.i == 2)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = true;
+                clock.pauseActivated = false;
+                clock.rewindActivated = false;
+            }
         }
 
         if (inputs.actionLeft && inputs.rightClick && !trigger)//REWIND
         {
-            mainClock.goRewind();    
+            clock.goRewind();
+            hasModifiedTime = true;
+            if (clock.rewindActivated && clock.i == 0)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.rewindActivated = false;
+            }
+            else if (clock.i == 0)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = false;
+                clock.pauseActivated = false;
+                clock.rewindActivated = true;
+                clock.notSet = true;
+            }
         }
         else if (inputs.actionLeft && inputs.leftClick)//PAUSE
         {
-            mainClock.goPause(); 
+            clock.goPause();
+            hasModifiedTime = true;
+            if (clock.pauseActivated && clock.i == 1)
+            {
+                //Return to normal time if action is pressed again while active
+                clock.resetToNormal();
+                hasModifiedTime = false;
+                clock.pauseActivated = false;
+            }
+            else if (clock.i == 1)
+            {
+                clock.accelActivated = false;
+                clock.slowActivated = false;
+                clock.pauseActivated = true;
+                clock.rewindActivated = false;
+            }
         }
         
         //Stuff to be able to rewind faster and faster if the rewind input stays pressed.
 
-        if(inputs.actionLeftPressed && inputs.rightClickPressed && mainClock.rewindActivated)//Must do it better so that it can't be activated
+        if(inputs.actionLeftPressed && inputs.rightClickPressed && clock.rewindActivated)//Must do it better so that it can't be activated
         {
-            mainClock.keepIncreasingValue = true;
+            clock.keepIncreasingValue = true;
         }
         else if(!inputs.actionLeftPressed || !inputs.rightClickPressed)
         {
-            mainClock.keepIncreasingValue = false;
+            clock.keepIncreasingValue = false;
         }
 
 
@@ -100,10 +164,10 @@ public class PlayerTimeScaleControl : MonoBehaviour {
 
     void energyCalculation()
     {
-       switch(mainClock.i)
+       switch(clock.i)
        {
            case 0:
-                PlayerEnergy.energyAmount += PlayerEnergy.rewindReductionAmt * dt * mainClock.ownTimeScale;
+                PlayerEnergy.energyAmount += PlayerEnergy.rewindReductionAmt * dt * clock.ownTimeScale;
                 if (enableDebug) Debug.Log("Energy Amount: " + PlayerEnergy.energyAmount);
                break;
            case 1:
@@ -117,16 +181,17 @@ public class PlayerTimeScaleControl : MonoBehaviour {
                break;
            case 3:
                PlayerEnergy.energyAmount += PlayerEnergy.energyRegenRate * dt;
-                mainClock.accelActivated = false;
-                mainClock.slowActivated = false;
-                mainClock.pauseActivated = false;
-                mainClock.rewindActivated = false;
+                clock.accelActivated = false;
+                clock.slowActivated = false;
+                clock.pauseActivated = false;
+                clock.rewindActivated = false;
                 break;
        }
         PlayerEnergy.energyAmount = Mathf.Clamp(PlayerEnergy.energyAmount, PlayerEnergy.minEnergyAmt, PlayerEnergy.maxEnergyAmt);
         if(PlayerEnergy.energyAmount <= PlayerEnergy.minEnergyAmt)
         {
-            mainClock.resetToNormal();
+            clock.resetToNormal();
+            hasModifiedTime = false;
         }
     }
     

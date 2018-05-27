@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class OnObjectPickedUp : MonoBehaviour {
 
+
+
+    //This is a placeholder for the future
+
+
+
 	// Use this for initialization
 	void Start () {
 		

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class CubeTimescaleControl : MonoBehaviour {
 
-    private MainClock mainClock;
+    private Clock clock;
     private TimeLine timeLine;
     [HideInInspector]
     public ActivatorBehaviour activator;
@@ -20,11 +20,15 @@ public class CubeTimescaleControl : MonoBehaviour {
     private void Start()
     {
         timeLine = GetComponent<TimeLine>();
-        mainClock = timeLine.clock;
+        clock = timeLine.clock;
     }
 
     private void LateUpdate()
     {      
+        if(clock == null)
+        {
+            clock = timeLine.clock;
+        }
         if (timeLine.OnNormal() && jiviri)
         {
 
@@ -50,42 +54,71 @@ public class CubeTimescaleControl : MonoBehaviour {
         {
             case 0: if (!applied)
                 {
-                    mainClock.goRewind();
+                    clock.goRewind();
                     applied = true;
+                    if (clock.i == 0)
+                    {
+                        clock.accelActivated = false;
+                        clock.slowActivated = false;
+                        clock.pauseActivated = false;
+                        clock.rewindActivated = true;
+                        clock.notSet = true;
+                    }
                 }
                 break;
             case 1:
                 if (!applied)
                 {
-                    mainClock.goPause();
+                    clock.goPause();
                     applied = true;
+                    if (clock.i == 1)
+                    {
+                        clock.accelActivated = false;
+                        clock.slowActivated = false;
+                        clock.pauseActivated = true;
+                        clock.rewindActivated = false;
+                    }
                 }
                 break;
             case 2:
                 if (!applied)
                 {
-                    mainClock.goSlow();
+                    clock.goSlow();
                     applied = true;
+                    if (clock.i == 2)
+                    {
+                        clock.accelActivated = false;
+                        clock.slowActivated = true;
+                        clock.pauseActivated = false;
+                        clock.rewindActivated = false;
+                    }
                 }
                 break;
             case 3:
                 if (!applied)
                 {
-                    mainClock.resetToNormal();
+                    clock.resetToNormal();
                     applied = true;
                 }
                 break;
             case 4:
                 if (!applied)
                 {
-                    mainClock.goAccel();
+                    clock.goAccel();
                     applied = true;
+                    if (clock.i == 4)
+                    {
+                        clock.accelActivated = true;
+                        clock.slowActivated = false;
+                        clock.pauseActivated = false;
+                        clock.rewindActivated = false;
+                    }
                 }
                 break;
             default:
                 if (!applied)
                 {
-                    mainClock.resetToNormal();
+                    clock.resetToNormal();
                     applied = true;
                 }
                 break;
@@ -97,7 +130,7 @@ public class CubeTimescaleControl : MonoBehaviour {
     {
         if(applied)
         {
-            mainClock.resetToNormal();
+            clock.resetToNormal();
             applied = false;
         }
         

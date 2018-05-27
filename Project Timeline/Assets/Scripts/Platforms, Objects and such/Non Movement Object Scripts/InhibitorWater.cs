@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class InhibitorWater : MonoBehaviour {
     //A
-    MainClock mainClock;
+    Clock mainClock;
     TimeLine timeLine;
     int i = 0;
     public List<GameObject> destroyedGameObjects;
     public bool isTriggered = false;
+
+    
     
 	// Use this for initialization
 	void Start () {
@@ -21,7 +23,7 @@ public class InhibitorWater : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        Debug.Log(i);
+        
         
         
 	}
@@ -29,7 +31,8 @@ public class InhibitorWater : MonoBehaviour {
     {
         if(other.CompareTag("Player"))
         {
-            mainClock.resetToNormalTime = true;
+            if(other.GetComponent<PlayerTimeScaleControl>().hasModifiedTime)
+                mainClock.resetToNormalTime = true;
         }
         else if(other.CompareTag("RayInteract")) //add "&& ohter.GetComponent<Rigidbody>()" to check if it's actually a movable object and not a lever or smth like that if that poses a problem in the future.
         {
