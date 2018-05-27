@@ -26,7 +26,7 @@ public class TimeLine : MonoBehaviour {
             gameObject.layer = 9;
         }
 
-        clock = MainClock.mainClock;
+        clock = transform.parent.Find("TimeManager").GetComponent<RoomClock>();
     }
 	
 	// Update is called once per frame
