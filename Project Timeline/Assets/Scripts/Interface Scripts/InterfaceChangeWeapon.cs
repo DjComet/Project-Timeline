@@ -11,6 +11,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
     public GameObject[] weaponIcons = new GameObject[4];
     private GameObject playerCanvas;
     public GameObject weaponPanel;
+    public GameObject energyPanel;
     private GameObject[] weaponPanelOptions = new GameObject [8];
     public Vector3 SelectorPos = new Vector3(0,0,0);
     public GameObject weaponSelector;
@@ -40,20 +41,30 @@ public class InterfaceChangeWeapon : MonoBehaviour
         
         inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<Inputs>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerController>();
-        weaponPanel = GameObject.Find("WeaponPanel");
-        /*
+        //weaponPanel = GameObject.Find("WeaponPanel");
+       
         playerCanvas = GameObject.FindGameObjectWithTag("PlayerCanvas");        
 
         for (int i = 0; i < playerCanvas.transform.childCount; i++)
         {
             GameObject child = playerCanvas.transform.GetChild(i).gameObject;
+            if (child.name == "WeaponPanel")
+            {
+                weaponPanel = child;
+            }
+            else if(child.name == "EnergyPanel")
+            {
+                energyPanel = child;
+            }
+        }
+
+        for (int i = 0; i < energyPanel.transform.childCount; i++)
+        {
+            //Debug.Log(i);
+            GameObject child = energyPanel.transform.GetChild(i).gameObject;
             if (child.name == "WeaponSelectedIcon")
             {
                 weaponSelectedIcon = child;
-            }
-            else if(child.name == "WeaponPanel")
-            {
-                weaponPanel = child;
             }
         }
 
@@ -77,7 +88,7 @@ public class InterfaceChangeWeapon : MonoBehaviour
             {
                 weaponIcons[i] = child;
             }
-        }*/
+        }
 
         for (int i = 0; i < weaponPanel.transform.childCount; i++)
         {

@@ -332,6 +332,7 @@ MonoBehaviour:
   colliders: []
   button: {fileID: 4311007406929614}
   buttonBase: {fileID: 4504020536879952}
+  enableTimeEvents: 1
   pressSpeed: 15
   t: 0
   active: 0

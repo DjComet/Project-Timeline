@@ -13,8 +13,10 @@ public class ButtonPressMovement : MonoBehaviour {
     public Transform button;
     public Transform buttonBase;
 
-    public float pressSpeed = 10.0f;
+    public bool enableTimeEvents = true;
 
+    public float pressSpeed = 10.0f;
+    
     Vector3 initialPos;
     Vector3 targetPos;
     public float t = 0;
@@ -49,7 +51,8 @@ public class ButtonPressMovement : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        if(enableTimeEvents)
+        {
             if (!timeLine.isEventOverlapping())
             {//Create event where forward = setActive && backwards = setInactive. Repeatable = true.
                 timeLine.createTimeEvent(
@@ -63,11 +66,19 @@ public class ButtonPressMovement : MonoBehaviour {
                     setInactive();
                 });
                 colliders.Add(other);
-                
+
             }
-        
-        
-        
+           
+        }
+        else
+        {
+            setActive();
+            colliders.Add(other);
+        }
+
+
+
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -82,9 +93,11 @@ public class ButtonPressMovement : MonoBehaviour {
             }
         }
 
-        if (colliders.Count == 0 && !timeLine.isEventOverlapping())
+        if(enableTimeEvents)
         {
-            
+            if (colliders.Count == 0 && !timeLine.isEventOverlapping())
+            {
+
                 timeLine.createTimeEvent(
                     false,
                     delegate
@@ -95,9 +108,18 @@ public class ButtonPressMovement : MonoBehaviour {
                     {
                         setActive();
                     });
-            
-            
+
+
+            }
         }
+        else
+        {
+            if (colliders.Count == 0)
+            {
+                setInactive();
+            }
+        }
+        
         
     }
 

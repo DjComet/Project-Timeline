@@ -15,6 +15,7 @@ public class InterfaceChangeTime : MonoBehaviour {
     private Inputs inputs;
     private GameObject player;
     private PlayerTimeScaleControl timeScaleControl;
+    private MainPlayerController playerController;
     private Clock mainClock;
 
 
@@ -23,7 +24,7 @@ public class InterfaceChangeTime : MonoBehaviour {
     // Use this for initialization
     void Start () {
         mainClock = Clock.mainClock;
-        
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<MainPlayerController>();
         player = GameObject.FindGameObjectWithTag("Player");
         inputs = player.GetComponent<Inputs>();
         cameraPlayer = GameObject.FindGameObjectWithTag("MainCamera");
@@ -64,7 +65,7 @@ public class InterfaceChangeTime : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(!PauseMenu.GameIsPaused)
+        if(!PauseMenu.GameIsPaused && playerController.weaponSelector == 0)
         {
             if (inputs.leftClick)
             {
