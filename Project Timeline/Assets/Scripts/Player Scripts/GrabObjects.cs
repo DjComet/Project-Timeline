@@ -49,15 +49,15 @@ public class GrabObjects : MonoBehaviour {
                 other.transform.parent = transform;
                 hasBeenParented = true;
             }
-            
-             
+
+            other.GetComponent<OnObjectPickedUp>().grabber = this;
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.gameObject.layer = 11;
 
             stayFacingUpwards();
             lerpTowardsCenter();
            
-            if ((inputs.actionRight && hasBeenGrabbed) || !other.gameObject.activeSelf)
+            if ((inputs.actionRight && hasBeenGrabbed && !inputs.leftClickPressed) || !other.gameObject.activeSelf)
             {
                 forceRelease();
             }
@@ -70,6 +70,7 @@ public class GrabObjects : MonoBehaviour {
     {
         hasBeenParented = false;
         grabbed = false;
+        other.GetComponent<OnObjectPickedUp>().grabber = null;
         other.GetComponent<Rigidbody>().isKinematic = false;
         other.gameObject.layer = 0;
         other.transform.parent = previousParent;
