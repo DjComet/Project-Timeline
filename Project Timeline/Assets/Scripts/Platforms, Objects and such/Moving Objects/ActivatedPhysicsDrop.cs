@@ -36,5 +36,10 @@ public class ActivatedPhysicsDrop : MonoBehaviour {
                 doneActivated = true;
             }
         }
+
+        if(rb.isKinematic)
+        {
+            doneActivated = false;
+        }
 	}
 }

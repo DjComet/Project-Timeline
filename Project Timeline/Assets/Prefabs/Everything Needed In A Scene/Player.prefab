@@ -601,8 +601,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1005122797742796}
+<<<<<<< HEAD
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 259.15, y: -10.5, z: 492.5}
+=======
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -96, y: 17.25, z: -336.5}
+>>>>>>> 90aec725fb69530c16f78fd6283f12359e004570
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4620893496401284}
@@ -1978,7 +1983,7 @@ MonoBehaviour:
   jumpDecelerationRate: 700
   gravity: 50
   coyoteTime: 0.2
-  deltaGround: 1.1
+  deltaGround: 1.3
   radiusDeltaGround: 0.25
   maxFallSpeed: 80
   grounded: 0
