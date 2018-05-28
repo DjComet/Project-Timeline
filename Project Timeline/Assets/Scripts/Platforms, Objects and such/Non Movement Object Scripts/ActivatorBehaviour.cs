@@ -120,8 +120,10 @@ public class ActivatorBehaviour : MonoBehaviour {
             initPos = cube.position;
             initRot = cube.rotation;
             pLight.enabled = false;
-            
-            doLerp = true;
+
+            if (!cube.GetComponent<OnObjectPickedUp>().grabber)
+                 doLerp = true;
+            else doLerp = false;
         }
     }
 

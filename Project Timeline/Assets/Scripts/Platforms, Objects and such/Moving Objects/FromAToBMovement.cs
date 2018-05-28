@@ -62,8 +62,9 @@ public class FromAToBMovement : MonoBehaviour {
         
         
 
-        timer += timeLine.scaledDT;
+        timer += Mathf.Abs(timeLine.scaledDT);
         timer = Mathf.Clamp(timer, 0, delay);
+
         if (timer >= delay)
         {
             timerReachsDelay = true;

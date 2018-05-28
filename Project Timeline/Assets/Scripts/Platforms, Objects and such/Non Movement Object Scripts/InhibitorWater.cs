@@ -10,10 +10,13 @@ public class InhibitorWater : MonoBehaviour {
     public List<GameObject> destroyedGameObjects;
     public bool isTriggered = false;
 
-    
-    
-	// Use this for initialization
-	void Start () {
+    GameObject toDestroy;
+
+    public bool canDestroy = false;
+    bool doingAnimation;
+
+    // Use this for initialization
+    void Start () {
 
         timeLine = GetComponent<TimeLine>();
         mainClock = timeLine.clock;
@@ -23,7 +26,10 @@ public class InhibitorWater : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        
+        if(canDestroy && toDestroy != null)
+        {
+            destroyGameObject(toDestroy.transform.gameObject);
+        }
         
         
 	}
@@ -38,7 +44,9 @@ public class InhibitorWater : MonoBehaviour {
         {
             if(!isTriggered)
             {
-                destroyGameObject(other.transform.gameObject);
+                canDestroy = true;
+                toDestroy = other.gameObject;
+                toDestroy.GetComponent<OnObjectPickedUp>().grabber.forceRelease();
                 timeLine.createTimeEvent
                 (
                     false,
@@ -75,11 +83,29 @@ public class InhibitorWater : MonoBehaviour {
         }     
     }
 
-    void destroyGameObject(GameObject toDestroy)
+    void doDestroyAnimation(GameObject gameObjToDestroy)
     {
-        destroyedGameObjects.Add(toDestroy);
-        Debug.Log("Destroyed");
-        toDestroy.SetActive(false);
+        gameObjToDestroy.transform.localScale -= Vector3.one * 0.75f * timeLine.scaledDT; 
+        doingAnimation = true;
+        if (gameObjToDestroy.transform.localScale.x <= Mathf.Epsilon)
+        {
+            doingAnimation = false;
+        }
+        
+    }
+
+    void destroyGameObject(GameObject gameObjToDestroy)
+    {
+        doDestroyAnimation(gameObjToDestroy);
+        if(!doingAnimation)
+        {
+            destroyedGameObjects.Add(gameObjToDestroy);
+            Debug.Log("Destroyed");
+            canDestroy = false;
+            gameObjToDestroy.SetActive(false);
+            toDestroy = null;
+        }
+        
     }
 
    

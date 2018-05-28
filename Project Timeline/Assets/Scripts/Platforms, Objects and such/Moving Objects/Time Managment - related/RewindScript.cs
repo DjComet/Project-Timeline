@@ -8,6 +8,7 @@ public struct PointInTime
 
     public readonly Vector3 position;
     public readonly Quaternion rotation;
+    public readonly Vector3 scale;
     public readonly Vector3 velocity;
     public readonly Vector3 angularVelocity;
     public readonly float timeWhenRecorded;
@@ -18,6 +19,7 @@ public struct PointInTime
     {
         position = t.position;
         rotation = t.rotation;
+        scale = t.localScale;
         velocity = v;
         angularVelocity = angV;
         timeWhenRecorded = cT;
@@ -49,6 +51,7 @@ public class RewindScript : RigidbodySettings {
     //Lerping stuff--------------------------------------------------------------------------------------------
     Vector3 initialPos;
     Quaternion initialRot;
+    Vector3 initialScale;
     float initialTime;
     float targetTime;
     float lerper;//redundant variable, can be replaced by currentTime.
@@ -140,6 +143,7 @@ public class RewindScript : RigidbodySettings {
             {
                 initialPos = transform.position;
                 initialRot = transform.rotation;
+                initialScale = transform.localScale;
                 initialTime = currentTime;
                 canInitializeLerp = false;
                 t = 0;//t must be zero every time we begin a new lerp section
@@ -156,6 +160,7 @@ public class RewindScript : RigidbodySettings {
 
             transform.position = Vector3.Lerp(initialPos, pointInTime.position, t);//Actual lerp for position and rotation, maybe i should lerp the velocity and the angVelocity too for smoother results... 
             transform.rotation = Quaternion.Slerp(initialRot, pointInTime.rotation, t);//Although you can't barely notice the difference with a record interval of 0.1 secs.
+            transform.localScale = Vector3.Lerp(initialScale, pointInTime.scale, t);
 
             if (pointsInTime != null && currentTime <= pointInTime.timeWhenRecorded)
             {

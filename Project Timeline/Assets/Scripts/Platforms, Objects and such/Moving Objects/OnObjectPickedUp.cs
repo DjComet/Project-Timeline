@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class OnObjectPickedUp : MonoBehaviour {
 
-
-
-    //This is a placeholder for the future
+    public GrabObjects grabber { get; set; }
 
 
 
@@ -19,4 +17,6 @@ public class OnObjectPickedUp : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    
 }
