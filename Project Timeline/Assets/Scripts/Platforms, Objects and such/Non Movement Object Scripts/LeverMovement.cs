@@ -94,7 +94,7 @@ public class LeverMovement : MonoBehaviour {
     {
         //Create event where forward = setActive && backwards = setInactive. Repeatable = true.
         timeLine.createTimeEvent(
-        true,
+        false,
         delegate {
             setActive();
         },
@@ -108,7 +108,7 @@ public class LeverMovement : MonoBehaviour {
     {
         //Create event where forward = setInactive && backwards = setActive. Repeatable = true.
         timeLine.createTimeEvent(
-            true,
+            false,
             delegate {
                 setInactive();
             },

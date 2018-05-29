@@ -16,7 +16,7 @@ public class CanvasUpdater : MonoBehaviour {
     private GameObject player;
     private Clock clock;
     private LookAndInteract lookAndInteract;
-
+    public float time;
     private float energyAmount;
 
     // Use this for initialization
@@ -74,6 +74,7 @@ public class CanvasUpdater : MonoBehaviour {
         {
             changeUI();
             currentTime.text = clock.currentTime.ToString("#.00");
+            time = clock.currentTime;
         }
 
         changeCrosshairColor();

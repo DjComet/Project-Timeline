@@ -9,5 +9,8 @@ EditorBuildSettings:
     path: Assets/_Levels/Menu.unity
     guid: 1ac683a8a9e58e347a5d68797bba464f
   - enabled: 1
-    path: Assets/_Levels/Test Levels/Testing grounds.unity
-    guid: d1a8099a73fc0fb4b9c75d5a9851dc8f
+    path: Assets/_Levels/Levels/Buttons&Portals/Level1.unity
+    guid: aa6462e0b9752bb48a22c46c2e24766d
+  - enabled: 1
+    path: Assets/_Levels/Levels/TemporalControl/MayanLevel1.unity
+    guid: 44a961b0c64a6a9449f25f2882796121

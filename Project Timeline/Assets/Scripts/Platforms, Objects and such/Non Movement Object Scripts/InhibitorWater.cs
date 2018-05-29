@@ -46,7 +46,8 @@ public class InhibitorWater : MonoBehaviour {
             {
                 canDestroy = true;
                 toDestroy = other.gameObject;
-                toDestroy.GetComponent<OnObjectPickedUp>().grabber.forceRelease();
+                if(toDestroy)
+                    toDestroy.GetComponent<OnObjectPickedUp>().grabber.forceRelease();
                 timeLine.createTimeEvent
                 (
                     false,

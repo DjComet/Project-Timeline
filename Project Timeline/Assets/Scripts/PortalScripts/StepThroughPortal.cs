@@ -10,8 +10,8 @@ public class StepThroughPortal : MonoBehaviour
     public Vector3 displacement;
     public Vector3 normalizedDisplacement;
 
-    public static float minTeleportThreshold = 0.08f;
-    public static float teleportDistance = 0.09f;//must always be greater than minTeleportThreshold or else teleported object will keep teleporting between portals until its escape velocity per frame is greater than the min threshold.
+    public static float minTeleportThreshold = 0.31f;
+    public static float teleportDistance = 0.30f;//must always be greater than minTeleportThreshold or else teleported object will keep teleporting between portals until its escape velocity per frame is greater than the min threshold.
 
     public List<Collider> objectsInPortal = new List<Collider>();
 
@@ -53,14 +53,21 @@ public class StepThroughPortal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        objectsInPortal.Add(other);    
+            other.gameObject.layer = 10;
+            objectsInPortal.Add(other);
     }
+
     private void OnTriggerExit(Collider other)
     {
         for (int i = objectsInPortal.Count - 1; i >= 0; i--)
         {
             if (objectsInPortal[i] == other)
             {
+                if(other.tag == "Player")
+                {
+                    other.gameObject.layer = 8;
+                }
+                else other.gameObject.layer = 0;
                 objectsInPortal.RemoveAt(i);
             }
         }

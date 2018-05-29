@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PortalPref: {fileID: 1995791198849058, guid: b17538558c008574c8f5e2fd6d6cfce2, type: 2}
-  posDiferenceCopy: {x: 1000, y: 0, z: 0}
+  posDiferenceCopy: {x: 0, y: 0, z: 0}
 --- !u!114 &114511591196931262
 MonoBehaviour:
   m_ObjectHideFlags: 1

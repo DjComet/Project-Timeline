@@ -14,7 +14,7 @@ public class HierarchyClock : Clock {
     void Start()
     {
         parentGO = transform.parent.gameObject;
-        timeValues = new float[] { -1f, 0f, 0.2f, 1f, 2f };
+        timeValues = new float[] { -1f, 0f, 0.2f, 1f, 4f };
 
         parentGO.GetComponentsInChildren(childObjects);
 
@@ -35,7 +35,7 @@ public class HierarchyClock : Clock {
 
         clockCore();
 
-        if (totalChildCount < childObjects.Count)
+        if (totalChildCount != childObjects.Count)
         {
             if (enableDebug) Debug.Log("Cycling through objects");
             cycleThroughObjects();

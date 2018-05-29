@@ -13,6 +13,7 @@ public class PortalCreator : MonoBehaviour {
     private GameObject portalA;
     private GameObject portalB;
 
+    private GameObject portalWall;
 
     // Use this for initialization
     void Start () {
@@ -40,6 +41,8 @@ public class PortalCreator : MonoBehaviour {
                     {
                         portal.transform.position = new Vector3(hit.point.x, hit.transform.position.y, hit.point.z);
                         portal.transform.rotation = Quaternion.LookRotation(hit.normal, hit.transform.up);
+
+                        portalWall = hit.collider.gameObject;
                     }
 
                     if (portalB)
@@ -66,9 +69,16 @@ public class PortalCreator : MonoBehaviour {
             else if (!portalB)
             {
                 portalB = GameObject.Instantiate(portalPrefB, portal.transform.position, portal.transform.rotation);
+                portalA.layer = 10;
+                portalB.layer = 10;
+
+                portalWall.layer = 12;
+
                 GameObject.Destroy(portal);
             }
         }
+
+
 		
 	}
 }

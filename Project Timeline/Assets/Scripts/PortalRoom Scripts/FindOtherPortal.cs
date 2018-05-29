@@ -39,7 +39,8 @@ public class FindOtherPortal : MonoBehaviour {
             if (this.tag == "PortalA")
             {
                 pref = GameObject.Instantiate(PortalPref, transform.position, transform.rotation);
-                transform.position += posDiferenceCopy;
+                transform.position += GameObject.FindGameObjectWithTag("CopyRoom").transform.position - 
+                    GameObject.FindGameObjectWithTag("OriginalRoom").transform.position;
                 otherP = GameObject.FindGameObjectWithTag("PortalB");
             }
             this.GetComponent<StepThroughPortal>().otherPortal = otherP.transform;

@@ -47,7 +47,9 @@ public class ButtonPressMovement : MonoBehaviour {
         }
 
         button.position = Vector3.Lerp(initialPos, targetPos, t);
-	}
+
+        
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -72,12 +74,9 @@ public class ButtonPressMovement : MonoBehaviour {
         }
         else
         {
-            setActive();
             colliders.Add(other);
+            setActive();
         }
-
-
-
 
     }
 
