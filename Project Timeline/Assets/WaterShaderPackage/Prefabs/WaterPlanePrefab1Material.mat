@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EnvironmentTex:
-        m_Texture: {fileID: 8400000, guid: 965dd13253aa5a94595c5b78e3a0e6fb, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FoamTex:
@@ -104,4 +104,4 @@ Material:
     - _LightDir: {r: 0, g: 1, b: 0, a: 1}
     - _Movement: {r: 0.01, g: 0.01, b: -0.01, a: 0}
     - _ShallowColor: {r: 1, g: 1, b: 1, a: 1}
-    - _UVOffset: {r: 1.6818519, g: 1.6818519, b: -1.6819727, a: 0}
+    - _UVOffset: {r: 1.7319003, g: 1.7319003, b: -1.729076, a: 0}
